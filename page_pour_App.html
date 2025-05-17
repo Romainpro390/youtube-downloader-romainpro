@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube Downloader - Romain Pro | Téléchargement de vidéos YouTube gratuit</title>
+    <meta name="description" content="Téléchargez vos vidéos YouTube préférées facilement et gratuitement avec notre application sans installation.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#1e3a8a', // Bleu foncé
+                            hover: '#1e40af',
+                        },
+                        secondary: {
+                            DEFAULT: '#10b981', // Vert
+                            hover: '#059669',
+                        },
+                        light: '#f9fafb',
+                        dark: '#111827',
+                    },
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'body': ['Roboto', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .custom-shadow {
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1), 0 10px 10px -5px rgba(59, 130, 246, 0.04);
+        }
+        
+        .screenshot {
+            filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(59, 130, 246, 0.15), 0 10px 10px -5px rgba(59, 130, 246, 0.08);
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .rating-star {
+            transition: all 0.2s ease;
+        }
+        
+        .rating-label:hover .rating-star,
+        .rating-label:hover ~ .rating-label .rating-star {
+            color: #facc15;
+        }
+        
+        .dark .rating-label:hover .rating-star,
+        .dark .rating-label:hover ~ .rating-label .rating-star {
+            color: #fbbf24;
+        }
+        
+        /* Animation de rebond pour le bouton de téléchargement */
+        @keyframes pulse-scale {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .pulse-animation {
+            animation: pulse-scale 2s infinite;
+        }
+        
+        /* Animation du compteur */
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .count-animation {
+            animation: countUp 1s ease-out forwards;
+        }
+        
+        /* Scroll doux */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Style pour la barre de progression */
+        .progress-bar {
+            height: 8px;
+            background: linear-gradient(to right, #1e3a8a, #10b981);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        /* Loader pour les avis */
+        .loader {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #1e3a8a;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="font-sans bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <!-- Détection du mode sombre -->
+    <script>
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-2">
+                    <svg class="w-10 h-10 text-primary dark:text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C1.5 3.42.157 5.817.18 9.548c-.023 3.731 1.32 6.128 4.205 6.364 3.599.245 11.626.246 15.23 0 2.885-.236 4.228-2.633 4.205-6.364.023-3.73-1.32-6.128-4.205-6.364zM9.5 15.5V8.5l6.5 3.5-6.5 3.5z"/>
+                    </svg>
+                    <div>
+                        <h1 class="text-xl font-bold text-primary dark:text-white">Youtube Downloader</h1>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Romain Pro</p>
+                    </div>
+                </a>
+
+                <!-- Navigation Desktop -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#fonctionnalites" class="font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white transition-colors">Fonctionnalités</a>
+                    <a href="#pourquoi" class="font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white transition-colors">Pourquoi nous choisir</a>
+                    <a href="#avis" class="font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white transition-colors">Avis</a>
+                    <a href="#contact" class="font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white transition-colors">Contact</a>
+                </nav>
+
+                <!-- Toggle mobile menu -->
+                <button id="menu-toggle" class="md:hidden text-gray-700 dark:text-gray-300 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="container mx-auto px-4 py-4 space-y-3">
+                <a href="#fonctionnalites" class="block font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white">Fonctionnalités</a>
+                <a href="#pourquoi" class="block font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white">Pourquoi nous choisir</a>
+                <a href="#avis" class="block font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white">Avis</a>
+                <a href="#contact" class="block font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative py-16 md:py-24 bg-gradient-to-br from-blue-50 to-green-50 dark:from-gray-900 dark:to-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="text-center md:text-left">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
+                        Téléchargez vos vidéos <span class="text-primary">YouTube</span> facilement
+                    </h1>
+                    <p class="mt-4 text-xl text-gray-600 dark:text-gray-300">
+                        Simple, rapide et <span class="font-semibold text-secondary">100% gratuit</span>. Sans installation requise.
+                    </p>
+                    
+                    <!-- Download Button -->
+                    <div class="mt-8 flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="https://tinyurl.com/yc5873y6" 
+                           class="pulse-animation inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-secondary hover:bg-secondary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary shadow-lg transition-all duration-300">
+                            <i class="fas fa-download mr-2"></i>
+                            Télécharger l'application (.zip)
+                        </a>
+                        <div class="flex items-center justify-center md:justify-start text-sm text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-shield-alt mr-2 text-primary"></i>
+                            Sans virus, vérifié par Avast
+                        </div>
+                    </div>
+                    
+                    <!-- Download Counter -->
+                    <div class="mt-6 flex justify-center md:justify-start items-center space-x-8">
+                        <div class="flex flex-col items-center md:items-start">
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Téléchargements</span>
+                            <span id="download-counter" class="text-2xl font-bold text-primary">8,500+</span>
+                        </div>
+                        <div class="flex flex-col items-center md:items-start">
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Satisfaction</span>
+                            <div class="flex items-center">
+                                <span class="text-2xl font-bold text-primary">97%</span>
+                                <div class="ml-2 w-16 h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                                    <div class="w-[97%] h-full bg-secondary rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- App Screenshot -->
+                <div class="relative flex justify-center">
+                    <div class="w-full max-w-md mx-auto relative">
+                        <!-- Génération d'une fausse capture d'écran d'application -->
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-xl screenshot">
+                            <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-t-lg flex items-center">
+                                <div class="flex space-x-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                </div>
+                                <div class="mx-auto text-center text-sm text-gray-500 dark:text-gray-400">Youtube Downloader - Romain Pro</div>
+                            </div>
+                            <div class="p-4">
+                                <div class="mb-4">
+                                    <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-md flex items-center">
+                                        <i class="fas fa-search text-gray-400 mr-2"></i>
+                                        <div class="text-sm text-gray-500 dark:text-gray-400">https://www.youtube.com/watch?v=...</div>
+                                    </div>
+                                </div>
+                                <div class="bg-primary bg-opacity-10 dark:bg-opacity-30 p-3 rounded-md mb-4">
+                                    <div class="h-32 bg-gray-200 dark:bg-gray-600 rounded-md flex items-center justify-center mb-2">
+                                        <i class="fas fa-play-circle text-4xl text-gray-400 dark:text-gray-500"></i>
+                                    </div>
+                                    <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Mon Titre de Vidéo - Chaîne Populaire</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">12:34 • 1080p HD</div>
+                                </div>
+                                <div class="flex space-x-2 mb-4">
+                                    <button class="flex-1 bg-secondary text-white rounded-md py-2 text-sm font-medium">MP4 1080p</button>
+                                    <button class="flex-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md py-2 text-sm font-medium">MP3 Audio</button>
+                                </div>
+                                <div class="bg-blue-50 dark:bg-gray-700 p-2 rounded-md text-xs text-blue-600 dark:text-blue-300">
+                                    <i class="fas fa-info-circle mr-1"></i> Prêt à télécharger. Cliquez sur un format pour commencer.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="fonctionnalites" class="py-16 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Fonctionnalités principales</h2>
+                <p class="mt-4 text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    Notre application offre tout ce dont vous avez besoin pour télécharger vos vidéos YouTube préférées
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-bolt text-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Téléchargement rapide</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Téléchargez n'importe quelle vidéo YouTube en quelques secondes seulement, sans attente ni limitation.
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300">
+                    <div class="w-14 h-14 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-sliders-h text-xl text-secondary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Formats multiples</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Choisissez parmi différents formats (MP4, MP3, AVI, etc.) et qualités (SD, HD, Full HD, 4K).
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300">
+                    <div class="w-14 h-14 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-xl text-purple-600 dark:text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Sans virus ni malware</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Notre application est certifiée sans virus et respecte votre confidentialité à 100%.
+                    </p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300">
+                    <div class="w-14 h-14 bg-yellow-100 dark:bg-yellow-900 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-desktop text-xl text-yellow-600 dark:text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Sans installation</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Utilisez l'application directement après téléchargement, sans installation complexe.
+                    </p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300">
+                    <div class="w-14 h-14 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-language text-xl text-red-600 dark:text-red-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Multilingue</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Interface disponible en français, anglais, espagnol, allemand et plusieurs autres langues.
+                    </p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300">
+                    <div class="w-14 h-14 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-ban text-xl text-indigo-600 dark:text-indigo-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Sans publicité</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Profitez d'une expérience propre et sans interruption, aucune publicité ni fenêtre pop-up.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="pourquoi" class="py-16 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Pourquoi choisir notre outil ?</h2>
+                    <p class="mt-4 text-xl text-gray-600 dark:text-gray-400">
+                        Notre mission est de vous offrir la meilleure expérience de téléchargement possible
+                    </p>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-8 custom-shadow">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900 dark:text-white">Solution 100% gratuite</h3>
+                                <p class="mt-2 text-base text-gray-600 dark:text-gray-300">
+                                    Notre outil restera toujours gratuit, sans fonctionnalités premium cachées.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900 dark:text-white">Sécurité garantie</h3>
+                                <p class="mt-2 text-base text-gray-600 dark:text-gray-300">
+                                    Téléchargez sans crainte, notre application est vérifiée et sécurisée.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900 dark:text-white">Développé avec passion</h3>
+                                <p class="mt-2 text-base text-gray-600 dark:text-gray-300">
+                                    Créé par des amateurs de vidéos pour des amateurs de vidéos.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900 dark:text-white">Mises à jour régulières</h3>
+                                <p class="mt-2 text-base text-gray-600 dark:text-gray-300">
+                                    Notre outil s'adapte constamment aux changements de YouTube.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial Quote -->
+                    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-600">
+                        <blockquote class="italic text-gray-600 dark:text-gray-300 text-center">
+                            <p>"Nous avons créé ce logiciel pour offrir une alternative simple, éthique et efficace aux solutions complexes du marché. Notre objectif est de démocratiser l'accès aux contenus YouTube tout en respectant votre vie privée."</p>
+                            <footer class="mt-2 font-medium">— L'équipe Romain Pro</footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="avis" class="py-16 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Avis des utilisateurs</h2>
+                <p class="mt-4 text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    Découvrez ce que nos utilisateurs pensent de notre outil
+                </p>
+                
+                <!-- Overall Rating -->
+                <div class="mt-6 flex justify-center">
+                    <div class="flex items-center bg-gray-50 dark:bg-gray-800 px-6 py-3 rounded-full shadow-sm">
+                        <div class="flex">
+                            <i class="fas fa-star text-yellow-400 text-xl"></i>
+                            <i class="fas fa-star text-yellow-400 text-xl"></i>
+                            <i class="fas fa-star text-yellow-400 text-xl"></i>
+                            <i class="fas fa-star text-yellow-400 text-xl"></i>
+                            <i class="fas fa-star-half-alt text-yellow-400 text-xl"></i>
+                        </div>
+                        <span class="ml-2 text-lg font-bold text-gray-700 dark:text-gray-300">4.7</span>
+                        <span class="ml-1 text-gray-500 dark:text-gray-400">/5</span>
+                        <span class="ml-2 text-sm text-gray-500 dark:text-gray-400">(basé sur 127 avis)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reviews Container -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="reviews-container">
+                <!-- Reviews will be loaded here by JavaScript -->
+                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg animate-pulse">
+                    <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-4"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded mb-2.5"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-5/6 mb-2.5"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-4/6"></div>
+                </div>
+                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg animate-pulse">
+                    <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-4"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded mb-2.5"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-5/6 mb-2.5"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-4/6"></div>
+                </div>
+                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg animate-pulse">
+                    <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-4"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded mb-2.5"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-5/6 mb-2.5"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-4/6"></div>
+                </div>
+            </div>
+            
+            <!-- Review Form -->
+            <div class="mt-12 max-w-2xl mx-auto bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Laissez votre avis</h3>
+                
+                <form id="review-form" class="space-y-4">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Votre nom</label>
+                        <input type="text" id="name" name="name" required
+                               class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md text-base focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Note</label>
+                        <div class="flex space-x-1" id="rating-container">
+                            <label class="rating-label cursor-pointer" data-rating="5">
+                                <input type="radio" name="rating" value="5" class="sr-only">
+                                <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-xl hover:text-yellow-400"></i>
+                            </label>
+                            <label class="rating-label cursor-pointer" data-rating="4">
+                                <input type="radio" name="rating" value="4" class="sr-only">
+                                <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-xl hover:text-yellow-400"></i>
+                            </label>
+                            <label class="rating-label cursor-pointer" data-rating="3">
+                                <input type="radio" name="rating" value="3" class="sr-only">
+                                <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-xl hover:text-yellow-400"></i>
+                            </label>
+                            <label class="rating-label cursor-pointer" data-rating="2">
+                                <input type="radio" name="rating" value="2" class="sr-only">
+                                <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-xl hover:text-yellow-400"></i>
+                            </label>
+                            <label class="rating-label cursor-pointer" data-rating="1">
+                                <input type="radio" name="rating" value="1" class="sr-only">
+                                <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-xl hover:text-yellow-400"></i>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="comment" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Votre commentaire</label>
+                        <textarea id="comment" name="comment" rows="3" required
+                                  class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md text-base focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white"></textarea>
+                    </div>
+                    
+                    <button type="submit" 
+                            class="w-full bg-primary hover:bg-primary-hover text-white font-bold py-2 px-4 rounded-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                        Envoyer mon avis
+                    </button>
+                </form>
+                <div id="form-message" class="mt-3 text-center hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simplified CTA Banner -->
+    <section class="py-12 bg-primary dark:bg-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Prêt à essayer Youtube Downloader ?</h2>
+            <p class="text-lg text-blue-100 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+                Téléchargez gratuitement notre application et commencez à sauvegarder vos vidéos YouTube préférées dès maintenant.
+            </p>
+            <a href="https://tinyurl.com/yc5873y6" 
+               class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-lg transition-all duration-300">
+                <i class="fas fa-download mr-2"></i>
+                Télécharger l'application (.zip)
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">À propos</h3>
+                    <p class="text-gray-400">
+                        Youtube Downloader - Romain Pro est une application de téléchargement de vidéos YouTube rapide, fiable et 100% gratuite.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Accueil</a></li>
+                        <li><a href="#fonctionnalites" class="text-gray-400 hover:text-white transition-colors">Fonctionnalités</a></li>
+                        <li><a href="#pourquoi" class="text-gray-400 hover:text-white transition-colors">Pourquoi nous choisir</a></li>
+                        <li><a href="#avis" class="text-gray-400 hover:text-white transition-colors">Avis</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-2 text-primary"></i>
+                            contact@romainpro.fr
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-globe mr-2 text-primary"></i>
+                            www.romainpro.fr
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Réseaux sociaux</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-400">
+                    © 2025 Romain Pro. Tous droits réservés.
+                </p>
+                <div class="mt-2 flex justify-center space-x-4 text-xs text-gray-500">
+                    <a href="#" class="hover:text-gray-400 transition-colors">Politique de confidentialité</a>
+                    <a href="#" class="hover:text-gray-400 transition-colors">Conditions d'utilisation</a>
+                    <a href="#" class="hover:text-gray-400 transition-colors">Mentions légales</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Toggle Mobile Menu
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking navigation links
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Animated Counter
+        function animateCounter(elementId, targetValue) {
+            const element = document.getElementById(elementId);
+            const duration = 2000; // 2 seconds
+            const frameDuration = 1000/60; // 60fps
+            const totalFrames = Math.round(duration / frameDuration);
+            let frame = 0;
+            
+            const startValue = 0;
+            const valueIncrement = (targetValue - startValue) / totalFrames;
+            
+            const counter = setInterval(() => {
+                frame++;
+                const progress = frame / totalFrames;
+                const currentValue = Math.round(startValue + valueIncrement * frame);
+                
+                element.textContent = new Intl.NumberFormat().format(currentValue) + '+';
+                
+                if (frame === totalFrames) {
+                    clearInterval(counter);
+                }
+            }, frameDuration);
+        }
+        
+        // Star Rating System
+        const ratingContainer = document.getElementById('rating-container');
+        let selectedRating = 0;
+        
+        ratingContainer.addEventListener('click', (e) => {
+            const ratingLabel = e.target.closest('.rating-label');
+            if (ratingLabel) {
+                const rating = parseInt(ratingLabel.dataset.rating);
+                selectedRating = rating;
+                
+                // Update star appearance
+                document.querySelectorAll('.rating-label').forEach(label => {
+                    const labelRating = parseInt(label.dataset.rating);
+                    const star = label.querySelector('.rating-star');
+                    
+                    if (labelRating <= rating) {
+                        star.classList.remove('text-gray-300', 'dark:text-gray-600');
+                        star.classList.add('text-yellow-400');
+                    } else {
+                        star.classList.add('text-gray-300', 'dark:text-gray-600');
+                        star.classList.remove('text-yellow-400');
+                    }
+                });
+                
+                // Select the radio input
+                ratingLabel.querySelector('input[type="radio"]').checked = true;
+            }
+        });
+        
+        // Sample reviews data
+        const reviews = [
+            {
+                name: "Marie Dupont",
+                rating: 5,
+                comment: "Application géniale ! Simple à utiliser et très rapide. Exactement ce que je cherchais depuis longtemps."
+            },
+            {
+                name: "Jean-Pierre Martin",
+                rating: 4,
+                comment: "Très bon outil, pratique et efficace. Le seul bémol est qu'il manque parfois certains formats de haute qualité."
+            },
+            {
+                name: "Sophie Leclerc",
+                rating: 5,
+                comment: "Je l'utilise tous les jours pour télécharger des tutoriels. Merci pour cette application gratuite et sans pub !"
+            },
+            {
+                name: "Thomas Petit",
+                rating: 5,
+                comment: "Enfin une application qui fonctionne sans problème ! J'ai essayé beaucoup d'autres solutions avant, mais celle-ci est de loin la meilleure."
+            },
+            {
+                name: "Camille Dubois",
+                rating: 4,
+                comment: "Très bonne application, interface intuitive. J'apprécie particulièrement la fonction d'extraction audio en MP3."
+            },
+            {
+                name: "Laurent Moreau",
+                rating: 5,
+                comment: "Merci pour ce logiciel extraordinaire ! Il m'a sauvé la vie pour mes projets vidéo."
+            }
+        ];
+        
+        // Function to render reviews
+        function renderReviews() {
+            const reviewsContainer = document.getElementById('reviews-container');
+            reviewsContainer.innerHTML = '';
+            
+            reviews.forEach(review => {
+                const reviewElement = document.createElement('div');
+                reviewElement.className = 'testimonial-card bg-gray-50 dark:bg-gray-800 p-6 rounded-xl shadow-sm transition-all duration-300';
+                
+                // Create stars based on rating
+                let starsHTML = '';
+                for (let i = 1; i <= 5; i++) {
+                    if (i <= review.rating) {
+                        starsHTML += '<i class="fas fa-star text-yellow-400"></i>';
+                    } else {
+                        starsHTML += '<i class="far fa-star text-yellow-400"></i>';
+                    }
+                }
+                
+                reviewElement.innerHTML = `
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg">
+                            ${review.name.charAt(0)}
+                        </div>
+                        <div class="ml-3">
+                            <h4 class="font-medium text-gray-900 dark:text-white">${review.name}</h4>
+                            <div class="flex text-sm">${starsHTML}</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">${review.comment}</p>
+                `;
+                
+                reviewsContainer.appendChild(reviewElement);
+            });
+        }
+        
+        // Handle review form submission
+        const reviewForm = document.getElementById('review-form');
+        const formMessage = document.getElementById('form-message');
+        
+        reviewForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const nameInput = document.getElementById('name');
+            const commentInput = document.getElementById('comment');
+            
+            if (selectedRating === 0) {
+                formMessage.textContent = "Veuillez sélectionner une note";
+                formMessage.className = "mt-3 text-center text-red-500 dark:text-red-400";
+                formMessage.classList.remove('hidden');
+                return;
+            }
+            
+            if (!nameInput.value.trim() || !commentInput.value.trim()) {
+                formMessage.textContent = "Veuillez remplir tous les champs";
+                formMessage.className = "mt-3 text-center text-red-500 dark:text-red-400";
+                formMessage.classList.remove('hidden');
+                return;
+            }
+            
+            // Simulate adding a new review
+            reviews.unshift({
+                name: nameInput.value,
+                rating: selectedRating,
+                comment: commentInput.value
+            });
+            
+            // Display success message
+            formMessage.textContent = "Merci pour votre avis !";
+            formMessage.className = "mt-3 text-center text-green-500 dark:text-green-400";
+            formMessage.classList.remove('hidden');
+            
+            // Clear form
+            nameInput.value = '';
+            commentInput.value = '';
+            selectedRating = 0;
+            
+            // Reset stars
+            document.querySelectorAll('.rating-label').forEach(label => {
+                const star = label.querySelector('.rating-star');
+                star.classList.add('text-gray-300', 'dark:text-gray-600');
+                star.classList.remove('text-yellow-400');
+            });
+            
+            // Uncheck all radio buttons
+            document.querySelectorAll('input[name="rating"]').forEach(input => {
+                input.checked = false;
+            });
+            
+            // Re-render reviews
+            renderReviews();
+            
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                formMessage.classList.add('hidden');
+            }, 3000);
+        });
+        
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('count-animation');
+                    observer.unobserve(entry.target);
+                    
+                    // If it's the download counter, animate it
+                    if (entry.target.id === 'download-counter') {
+                        animateCounter('download-counter', 8500);
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // Observe elements for animations
+        document.querySelectorAll('.feature-card, .testimonial-card, #download-counter').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // On page load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderReviews();
+            
+            // Simulate download counting if in viewport
+            const downloadCounter = document.getElementById('download-counter');
+            if (isInViewport(downloadCounter)) {
+                animateCounter('download-counter', 8500);
+            }
+        });
+        
+        // Helper function to check if element is in viewport
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+    </script>
+</body>
+</html>
