@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Romain Kapuya | Développeur Full-Stack | Portfolio</title>
-    
-    <!-- Meta tags -->
-    <meta name="description" content="Portfolio professionnel de Romain Kapuya, développeur Full-Stack et créateur d'applications intelligentes">
-    <meta name="author" content="Romain Kapuya">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAABCdJREFUWEetV01oXFUU/s59M5lMQpM0tSZtTGNpqaWgVLBUXLhRKbiQbrqR7rqyGzdudaGgoBtRcOFSunEhCi4UdFGsUClWA7ZpYzVN86NNMpP5efP8zrnvzkxm3ryZvBdy4c2759xzv/ud75x7L0Md/2CwQ3UrC2lzwpBSFTAiIIUSIvBwLkrb5sEAnmBEGaHb+ubCUE2D5Wpeu/9MvSaH2/2IMu9BCcQADYLIyL0tycn/uL80IDJKmz8HhtJmjv3Xpyg9nOXnSQFAgRiiWRgHgqyXdK3Vvq4JXnj5RcHUywOQXAXz9K4WAJWAVCiogvCq6ZZCEqR4/6qf9u5G5NyQ+Pxp7ZFrMDW9AO2DgT3mNWMB2BCRwLQXm1H/4/swQwt3SU8x7kGdVvz5PqjnBXi2dAQxwDtJRQUGdotOv38n5qy8g7GXDgCJPHwZoU9u26aY6ZXIM/0TgF68FwQJgOzUgexOoPwxsH4qC9K7QbH0P2TmuLjbAXkTWiUiImRxRbS2n9Fz5+HVfxbdQ3AATOE/Qv0wUHsTSE+CPQcI5Aai6AKaWwvIu0PIXAcwNQVMTwN7S0D0FTB9CxTcBVCLDwVIPiAZwL1HuPTVBrJLKygUCjh06ABOnXwD0+PdncyM8GID9Vdvwvzhb2B+DkgBFPwJrOCdMbm4LHjAE1lZWcPCwk9YWlpBqZTFyeOvgpIp0P5nkb7wLLz6baDxPXD5K2B1Fegtgpp9UBaYYYLgBmjCEeEIIYlCIY+J8XGUyxOYGM8j8wJQOQnkFHAXWP8ZdB8o7QGKRVCrAxrxZjyAhbkGBQ/YKbJoaQwRgVgW7XZf0pdPgEoTwCSBSPAKSPqgJJN4AI/M2ZkIYK9QBoCsIYSQJNRiuLIGE1nQfaDCDNgHbRNM5JU9mHwB9wygcB5IPQV0e60kCRZrgmACsG7P8bR2aQQDICK8BfgOkE9D3gLVH4C3QWP9UM0H5SYl1BsFCPfKADRXhbmNv+1mChJIkoAuD9nMq4IZAOfZ6XbJxR1k41WAk1DhewVYbNhmkl/6fG0A4Dl21HYAMQimGFQGlIoohcBqbK4TkQBFoLk6uBNIfxvMHhSHpDzXwAAqy36zAYXfgKEBdRO/HGKNsUK0GGlI+iw09TJouGzV1WjVncLBSwMCpNvXMoAEAYZbsGRLe27HE5hhYx6XVRAYIkMBQ/ZVoFM9INzgAlBHCe/YFn5nUYDRTsV/yRdRjsD/XRuAPk02dMN6t+QVzwdQsZHtxw4DUXcIK3JhIfnZVcHrCHUCCVLgEr+7gwAEm4G9IobdFWQHI97gUJBEBP8C4YI48SDPVXEGiShv7Qzh6vRxqUZE+RbfZLGj1c5EEFwR3o19+wfQLEOJ8wxA7QAAAABJRU5ErkJggg==">
-
+    <title>Youtube Downloader - Romain Pro | Téléchargement de vidéos YouTube gratuit</title>
+    <meta name="description" content="Téléchargez vos vidéos YouTube préférées facilement et gratuitement avec notre application sans installation.">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -21,237 +18,112 @@
                 extend: {
                     colors: {
                         primary: {
-                            DEFAULT: '#5D5CDE',
-                            dark: '#4A49B0',
-                            light: '#7D7CE5'
+                            DEFAULT: '#1e3a8a', // Bleu foncé
+                            hover: '#1e40af',
                         },
                         secondary: {
-                            DEFAULT: '#10B981',
-                            dark: '#059669',
-                            light: '#34D399'
+                            DEFAULT: '#10b981', // Vert
+                            hover: '#059669',
                         },
-                        dark: {
-                            DEFAULT: '#111827',
-                            light: '#1F2937',
-                        },
-                        light: {
-                            DEFAULT: '#F9FAFB',
-                            dark: '#F3F4F6',
-                        }
+                        light: '#f9fafb',
+                        dark: '#111827',
                     },
                     fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif'],
-                        'display': ['Poppins', 'system-ui', 'sans-serif']
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'body': ['Roboto', 'sans-serif'],
                     },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-in-out forwards',
-                        'slide-up': 'slideUp 0.5s ease-in-out forwards',
-                        'slide-down': 'slideDown 0.5s ease-in-out forwards',
-                        'bounce-slow': 'bounce 3s infinite',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(20px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
-                        },
-                        slideDown: {
-                            '0%': { transform: 'translateY(-20px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
-                        },
-                    }
-                }
-            }
-        }
+                },
+            },
+        };
     </script>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+        .custom-shadow {
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1), 0 10px 10px -5px rgba(59, 130, 246, 0.04);
         }
         
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+        .screenshot {
+            filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
         }
         
-        .dark ::-webkit-scrollbar-track {
-            background: #1F2937;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #c8c8c8;
-            border-radius: 4px;
-        }
-        
-        .dark ::-webkit-scrollbar-thumb {
-            background: #4B5563;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
-        }
-        
-        .dark ::-webkit-scrollbar-thumb:hover {
-            background: #6B7280;
-        }
-        
-        /* Profile image */
-        .profile-image {
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .profile-image:hover {
+        .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: rgba(50, 50, 93, 0.35) 0px 17px 30px -5px, rgba(0, 0, 0, 0.4) 0px 10px 20px -8px;
+            box-shadow: 0 15px 30px -5px rgba(59, 130, 246, 0.15), 0 10px 10px -5px rgba(59, 130, 246, 0.08);
         }
         
-        /* Cards hover effect */
-        .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .testimonial-card {
+            transition: all 0.3s ease-in-out;
         }
         
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+        .testimonial-card:hover {
+            transform: scale(1.03);
         }
         
-        .dark .card-hover:hover {
-            box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 15px -3px, rgba(0, 0, 0, 0.2) 0px 4px 6px -2px;
-        }
-        
-        /* Timeline styles */
-        .timeline-item {
-            position: relative;
-            padding-left: 30px;
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background-color: #5D5CDE;
-        }
-        
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: -4px;
-            top: 0;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #5D5CDE;
-        }
-        
-        .dark .timeline-item::before {
-            background-color: #7D7CE5;
-        }
-        
-        .dark .timeline-item::after {
-            background-color: #7D7CE5;
-        }
-        
-        /* Skill badge hover effect */
-        .skill-badge {
-            transition: all 0.3s ease;
-        }
-        
-        .skill-badge:hover {
-            transform: scale(1.05);
-        }
-        
-        /* Rating stars */
         .rating-star {
-            cursor: pointer;
-            transition: color 0.2s;
+            transition: all 0.2s ease;
         }
         
         .rating-label:hover .rating-star,
         .rating-label:hover ~ .rating-label .rating-star {
-            color: #F59E0B;
+            color: #facc15;
         }
         
-        /* Project card effect */
-        .project-card-image {
-            transform: scale(1);
-            transition: transform 0.5s ease-in-out;
+        .dark .rating-label:hover .rating-star,
+        .dark .rating-label:hover ~ .rating-label .rating-star {
+            color: #fbbf24;
         }
         
-        .project-card:hover .project-card-image {
-            transform: scale(1.05);
+        /* Animation de rebond pour le bouton de téléchargement */
+        @keyframes pulse-scale {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
         
-        /* Smooth scroll for sections */
+        .pulse-animation {
+            animation: pulse-scale 2s infinite;
+        }
+        
+        /* Animation du compteur */
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .count-animation {
+            animation: countUp 1s ease-out forwards;
+        }
+        
+        /* Scroll doux */
         html {
             scroll-behavior: smooth;
         }
         
-        /* Button animation */
-        .btn-animation {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
+        /* Style pour la barre de progression */
+        .progress-bar {
+            height: 8px;
+            background: linear-gradient(to right, #1e3a8a, #10b981);
+            border-radius: 4px;
+            transition: width 0.5s ease;
         }
         
-        .btn-animation:after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 5px;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.3);
-            opacity: 0;
-            border-radius: 100%;
-            transform: scale(1, 1) translate(-50%);
-            transform-origin: 50% 50%;
-        }
-        
-        .btn-animation:hover:after {
-            animation: ripple 1s ease-out;
-        }
-        
-        @keyframes ripple {
-            0% {
-                transform: scale(0, 0);
-                opacity: 0.5;
-            }
-            100% {
-                transform: scale(100, 100);
-                opacity: 0;
-            }
-        }
-        
-        /* Cursor effect */
-        .custom-cursor {
-            background: rgba(93, 92, 222, 0.2);
+        /* Loader pour les avis */
+        .loader {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #1e3a8a;
+            border-bottom-color: transparent;
             border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            mix-blend-mode: multiply;
-            transition: transform 0.2s;
-            z-index: 9999;
+            display: inline-block;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
-
-<body class="font-sans bg-light dark:bg-dark text-gray-900 dark:text-gray-100 antialiased overflow-x-hidden transition-colors duration-300">
-    <!-- Dark Mode Detection -->
+<body class="font-sans bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <!-- Détection du mode sombre -->
     <script>
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.documentElement.classList.add('dark');
@@ -265,919 +137,533 @@
         });
     </script>
 
-    <!-- Custom cursor effect for desktop -->
-    <div class="custom-cursor hidden md:block"></div>
-
-    <!-- Header/Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-dark-light/80 backdrop-blur-md shadow-sm">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div class="flex justify-between items-center">
-                <!-- Logo/Name -->
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
                 <a href="#" class="flex items-center space-x-2">
-                    <div class="text-xl md:text-2xl font-bold text-primary">
-                        <span class="font-display">Romain</span> <span class="font-light">Kapuya</span>
+                    <svg class="w-10 h-10 text-primary dark:text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C1.5 3.42.157 5.817.18 9.548c-.023 3.731 1.32 6.128 4.205 6.364 3.599.245 11.626.246 15.23 0 2.885-.236 4.228-2.633 4.205-6.364.023-3.73-1.32-6.128-4.205-6.364zM9.5 15.5V8.5l6.5 3.5-6.5 3.5z"/>
+                    </svg>
+                    <div>
+                        <h1 class="text-xl font-bold text-primary dark:text-white">Youtube Downloader</h1>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Romain Pro</p>
                     </div>
                 </a>
-                
-                <!-- Desktop Navigation -->
+
+                <!-- Navigation Desktop -->
                 <nav class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light font-medium transition-colors">À propos</a>
-                    <a href="#skills" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light font-medium transition-colors">Compétences</a>
-                    <a href="#experience" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light font-medium transition-colors">Expérience</a>
-                    <a href="#projects" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light font-medium transition-colors">Projets</a>
-                    <a href="#rating" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light font-medium transition-colors">Noter</a>
-                    <a href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light font-medium transition-colors">Contact</a>
+                    <a href="#fonctionnalites" class="font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white transition-colors">Fonctionnalités</a>
+                    <a href="#pourquoi" class="font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white transition-colors">Pourquoi nous choisir</a>
+                    <a href="#avis" class="font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white transition-colors">Avis</a>
+                    <a href="#contact" class="font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white transition-colors">Contact</a>
                 </nav>
-                
-                <!-- Dark/Light mode toggle -->
-                <button id="theme-toggle" class="ml-4 h-10 w-10 rounded-full flex items-center justify-center focus:outline-none bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
-                    <i class="fas fa-sun dark:hidden"></i>
-                    <i class="fas fa-moon hidden dark:block"></i>
-                </button>
-                
-                <!-- Mobile menu button -->
-                <button id="mobile-menu-button" class="md:hidden h-10 w-10 rounded-lg flex items-center justify-center focus:outline-none">
-                    <i class="fas fa-bars text-lg"></i>
+
+                <!-- Toggle mobile menu -->
+                <button id="menu-toggle" class="md:hidden text-gray-700 dark:text-gray-300 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
                 </button>
             </div>
         </div>
-        
-        <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-dark-light shadow-md">
-            <div class="container mx-auto px-6 py-4 space-y-4">
-                <a href="#about" class="block text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light font-medium">À propos</a>
-                <a href="#skills" class="block text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light font-medium">Compétences</a>
-                <a href="#experience" class="block text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light font-medium">Expérience</a>
-                <a href="#projects" class="block text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light font-medium">Projets</a>
-                <a href="#rating" class="block text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light font-medium">Noter</a>
-                <a href="#contact" class="block text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light font-medium">Contact</a>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="container mx-auto px-4 py-4 space-y-3">
+                <a href="#fonctionnalites" class="block font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white">Fonctionnalités</a>
+                <a href="#pourquoi" class="block font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white">Pourquoi nous choisir</a>
+                <a href="#avis" class="block font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white">Avis</a>
+                <a href="#contact" class="block font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white">Contact</a>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 min-h-[90vh] flex items-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 dark:from-primary/10 dark:to-secondary/10 z-0"></div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="order-2 lg:order-1">
-                    <div class="animate-slide-down opacity-0" style="animation-delay: 0.2s;">
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 font-display leading-tight">
-                            <span class="text-primary">Développeur Full-Stack</span>
-                            <span class="block mt-2">Créateur de solutions intelligentes</span>
-                        </h1>
-                    </div>
-                    <div class="animate-slide-down opacity-0" style="animation-delay: 0.4s;">
-                        <p class="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
-                            Je transforme des idées en applications fonctionnelles et intuitives. 
-                            Passionné par la création de solutions intelligentes, l'automatisation et les interfaces utilisateur modernes.
-                        </p>
-                    </div>
-                    <div class="flex flex-wrap gap-4 animate-slide-down opacity-0" style="animation-delay: 0.6s;">
-                        <a href="#contact" class="btn-animation bg-primary hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all">
-                            Me contacter
+    <section class="relative py-16 md:py-24 bg-gradient-to-br from-blue-50 to-green-50 dark:from-gray-900 dark:to-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="text-center md:text-left">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
+                        Téléchargez vos vidéos <span class="text-primary">YouTube</span> facilement
+                    </h1>
+                    <p class="mt-4 text-xl text-gray-600 dark:text-gray-300">
+                        Simple, rapide et <span class="font-semibold text-secondary">100% gratuit</span>. Sans installation requise.
+                    </p>
+                    
+                    <!-- Download Button -->
+                    <div class="mt-8 flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="https://tinyurl.com/yc5873y6" 
+                           class="pulse-animation inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-secondary hover:bg-secondary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary shadow-lg transition-all duration-300">
+                            <i class="fas fa-download mr-2"></i>
+                            Télécharger l'application (.zip)
                         </a>
-                        <a href="#projects" class="btn-animation bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all border border-gray-200 dark:border-gray-700">
-                            Voir mes projets
-                        </a>
+                        <div class="flex items-center justify-center md:justify-start text-sm text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-shield-alt mr-2 text-primary"></i>
+                            Sans virus, vérifié par Avast
+                        </div>
+                    </div>
+                    
+                    <!-- Download Counter -->
+                    <div class="mt-6 flex justify-center md:justify-start items-center space-x-8">
+                        <div class="flex flex-col items-center md:items-start">
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Téléchargements</span>
+                            <span id="download-counter" class="text-2xl font-bold text-primary">8,500+</span>
+                        </div>
+                        <div class="flex flex-col items-center md:items-start">
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Satisfaction</span>
+                            <div class="flex items-center">
+                                <span class="text-2xl font-bold text-primary">97%</span>
+                                <div class="ml-2 w-16 h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                                    <div class="w-[97%] h-full bg-secondary rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Profile Image Side -->
-                <div class="order-1 lg:order-2 flex justify-center animate-fade-in opacity-0" style="animation-delay: 0.8s;">
-                    <div class="relative">
-                        <!-- Image placeholder - would be replaced with actual image in the final implementation -->
-                        <div class="profile-image w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-800 border-4 border-white dark:border-gray-700 shadow-xl flex items-center justify-center">
-                            <div class="absolute inset-0 bg-gradient-to-tr from-primary/40 to-secondary/40 mix-blend-overlay"></div>
-                            <!-- Placeholder icon that would be replaced with actual image -->
-                            <i class="fas fa-user-circle text-8xl text-gray-400 dark:text-gray-600"></i>
-                            <!-- For actual implementation, replace with:
-                            <img src="photo.jpg" alt="Romain Kapuya" class="w-full h-full object-cover"> -->
-                        </div>
-                        
-                        <!-- Floating badges -->
-                        <div class="absolute -top-4 -right-4 bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-md">
-                            <i class="fas fa-code text-primary"></i>
-                        </div>
-                        
-                        <div class="absolute -bottom-4 -left-4 bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-md">
-                            <i class="fas fa-lightbulb text-yellow-500"></i>
+                <!-- App Screenshot -->
+                <div class="relative flex justify-center">
+                    <div class="w-full max-w-md mx-auto relative">
+                        <!-- Génération d'une fausse capture d'écran d'application -->
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-xl screenshot">
+                            <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-t-lg flex items-center">
+                                <div class="flex space-x-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                </div>
+                                <div class="mx-auto text-center text-sm text-gray-500 dark:text-gray-400">Youtube Downloader - Romain Pro</div>
+                            </div>
+                            <div class="p-4">
+                                <div class="mb-4">
+                                    <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-md flex items-center">
+                                        <i class="fas fa-search text-gray-400 mr-2"></i>
+                                        <div class="text-sm text-gray-500 dark:text-gray-400">https://www.youtube.com/watch?v=...</div>
+                                    </div>
+                                </div>
+                                <div class="bg-primary bg-opacity-10 dark:bg-opacity-30 p-3 rounded-md mb-4">
+                                    <div class="h-32 bg-gray-200 dark:bg-gray-600 rounded-md flex items-center justify-center mb-2">
+                                        <i class="fas fa-play-circle text-4xl text-gray-400 dark:text-gray-500"></i>
+                                    </div>
+                                    <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Mon Titre de Vidéo - Chaîne Populaire</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">12:34 • 1080p HD</div>
+                                </div>
+                                <div class="flex space-x-2 mb-4">
+                                    <button class="flex-1 bg-secondary text-white rounded-md py-2 text-sm font-medium">MP4 1080p</button>
+                                    <button class="flex-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md py-2 text-sm font-medium">MP3 Audio</button>
+                                </div>
+                                <div class="bg-blue-50 dark:bg-gray-700 p-2 rounded-md text-xs text-blue-600 dark:text-blue-300">
+                                    <i class="fas fa-info-circle mr-1"></i> Prêt à télécharger. Cliquez sur un format pour commencer.
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-center animate-bounce-slow">
-                <a href="#about" class="text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary-light">
-                    <i class="fas fa-chevron-down text-2xl"></i>
-                </a>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white dark:bg-dark-light">
+    <!-- Features Section -->
+    <section id="fonctionnalites" class="py-16 bg-white dark:bg-gray-900">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl mx-auto text-center mb-16">
-                <h2 class="section-title text-3xl md:text-4xl font-bold mb-6 font-display">
-                    <span class="text-primary">À propos</span> de moi
-                </h2>
-                <div class="w-20 h-1 bg-primary mx-auto mb-8 rounded-full"></div>
-                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Passionné de développement et de création numérique, je suis spécialisé dans la création d'applications 
-                    Windows avec interfaces graphiques et le développement web. J'ai une affinité particulière pour 
-                    l'automatisation, l'IA et la création de contenus interactifs. Mon objectif est de fournir 
-                    des solutions accessibles et innovantes qui répondent parfaitement aux besoins des utilisateurs.
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Fonctionnalités principales</h2>
+                <p class="mt-4 text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    Notre application offre tout ce dont vous avez besoin pour télécharger vos vidéos YouTube préférées
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="card-hover bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md p-6 text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center">
-                        <i class="fas fa-laptop-code text-primary text-2xl"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-bolt text-xl text-primary"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Développement d'Applications</h3>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Téléchargement rapide</h3>
                     <p class="text-gray-600 dark:text-gray-400">
-                        Création d'applications Windows intuitives avec interfaces graphiques modernes avec java, python.
+                        Téléchargez n'importe quelle vidéo YouTube en quelques secondes seulement, sans attente ni limitation.
                     </p>
                 </div>
                 
-                <!-- Card 2 -->
-                <div class="card-hover bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md p-6 text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 bg-secondary/10 dark:bg-secondary/20 rounded-full flex items-center justify-center">
-                        <i class="fas fa-robot text-secondary text-2xl"></i>
+                <!-- Feature 2 -->
+                <div class="feature-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300">
+                    <div class="w-14 h-14 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-sliders-h text-xl text-secondary"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Automatisation & IA</h3>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Formats multiples</h3>
                     <p class="text-gray-600 dark:text-gray-400">
-                        Utilisation des technologies d'IA et d'automatisation pour optimiser les processus grave vn8n. 
+                        Choisissez parmi différents formats (MP4, MP3, AVI, etc.) et qualités (SD, HD, Full HD, 4K).
                     </p>
                 </div>
                 
-                <!-- Card 3 -->
-                <div class="card-hover bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md p-6 text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 bg-yellow-500/10 dark:bg-yellow-500/20 rounded-full flex items-center justify-center">
-                        <i class="fas fa-pen-fancy text-yellow-500 text-2xl"></i>
+                <!-- Feature 3 -->
+                <div class="feature-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300">
+                    <div class="w-14 h-14 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-xl text-purple-600 dark:text-purple-400"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Contenu Interactif</h3>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Sans virus ni malware</h3>
                     <p class="text-gray-600 dark:text-gray-400">
-                        Création de vidéos animées et de livres interactifs pour mon audience youtube.
+                        Notre application est certifiée sans virus et respecte votre confidentialité à 100%.
+                    </p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300">
+                    <div class="w-14 h-14 bg-yellow-100 dark:bg-yellow-900 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-desktop text-xl text-yellow-600 dark:text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Sans installation</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Utilisez l'application directement après téléchargement, sans installation complexe.
+                    </p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300">
+                    <div class="w-14 h-14 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-language text-xl text-red-600 dark:text-red-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Multilingue</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Interface disponible en français, anglais, espagnol, allemand et plusieurs autres langues.
+                    </p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300">
+                    <div class="w-14 h-14 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-ban text-xl text-indigo-600 dark:text-indigo-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Sans publicité</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Profitez d'une expérience propre et sans interruption, aucune publicité ni fenêtre pop-up.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gray-50 dark:bg-dark">
+    <!-- Why Choose Us Section -->
+    <section id="pourquoi" class="py-16 bg-gray-50 dark:bg-gray-800">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl mx-auto text-center mb-16">
-                <h2 class="section-title text-3xl md:text-4xl font-bold mb-6 font-display">
-                    Mes <span class="text-primary">Compétences</span>
-                </h2>
-                <div class="w-20 h-1 bg-primary mx-auto mb-8 rounded-full"></div>
-                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Une combinaison de compétences techniques et créatives pour transformer les idées en réalité.
-                </p>
-            </div>
-            
-            <!-- Skills Categories -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <!-- Technical Skills -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
-                    <h3 class="text-xl font-bold mb-6 flex items-center">
-                        <i class="fas fa-code text-primary mr-2"></i>
-                        Compétences Techniques
-                    </h3>
-                    
-                    <div class="flex flex-wrap gap-3">
-                        <span class="skill-badge inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100">
-                            <i class="fab fa-python mr-1"></i> Python
-                        </span>
-                        <span class="skill-badge inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-100">
-                            <i class="fab fa-java mr-1"></i> Java
-                        </span>
-                        <span class="skill-badge inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-100">
-                            <i class="fab fa-js-square mr-1"></i> JavaScript
-                        </span>
-                        <span class="skill-badge inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-100">
-                            <i class="fab fa-html5 mr-1"></i> HTML
-                        </span>
-                        <span class="skill-badge inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100">
-                            <i class="fab fa-css3-alt mr-1"></i> CSS
-                        </span>
-                        <span class="skill-badge inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-100">
-                            <i class="fas fa-database mr-1"></i> SQL
-                        </span>
-                        <span class="skill-badge inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-100">
-                            <i class="fab fa-github mr-1"></i> GitHub
-                        </span>
-                    </div>
-                    
-                    <!-- Progress bars -->
-                    <div class="mt-6 space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Python</span>
-                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">90%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                                <div class="bg-blue-500 h-2 rounded-full" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Java</span>
-                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">80%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                                <div class="bg-orange-500 h-2 rounded-full" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">HTML/CSS</span>
-                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">85%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                                <div class="bg-red-500 h-2 rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">JavaScript</span>
-                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">75%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 75%"></div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Pourquoi choisir notre outil ?</h2>
+                    <p class="mt-4 text-xl text-gray-600 dark:text-gray-400">
+                        Notre mission est de vous offrir la meilleure expérience de téléchargement possible
+                    </p>
                 </div>
                 
-                <!-- Creative & Professional Skills -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
-                    <h3 class="text-xl font-bold mb-6 flex items-center">
-                        <i class="fas fa-lightbulb text-primary mr-2"></i>
-                        Autres Compétences
-                    </h3>
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-8 custom-shadow">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900 dark:text-white">Solution 100% gratuite</h3>
+                                <p class="mt-2 text-base text-gray-600 dark:text-gray-300">
+                                    Notre outil restera toujours gratuit, sans fonctionnalités premium cachées.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900 dark:text-white">Sécurité garantie</h3>
+                                <p class="mt-2 text-base text-gray-600 dark:text-gray-300">
+                                    Téléchargez sans crainte, notre application est vérifiée et sécurisée.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900 dark:text-white">Développé avec passion</h3>
+                                <p class="mt-2 text-base text-gray-600 dark:text-gray-300">
+                                    Créé par des amateurs de vidéos pour des amateurs de vidéos.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900 dark:text-white">Mises à jour régulières</h3>
+                                <p class="mt-2 text-base text-gray-600 dark:text-gray-300">
+                                    Notre outil s'adapte constamment aux changements de YouTube.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <div class="space-y-5">
-                        <!-- Skill with icon -->
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-10 h-10 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center">
-                                <i class="fas fa-brain text-primary"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-md font-semibold">IA & Automatisation</h4>
-                                <p class="text-sm text-gray-600 dark:text-gray-400">
-                                    Utilisation de l'IA pour automatiser des tâches et créer des solutions intelligentes.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- Skill with icon -->
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-10 h-10 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center">
-                                <i class="fas fa-desktop text-primary"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-md font-semibold">Applications Windows avec GUI</h4>
-                                <p class="text-sm text-gray-600 dark:text-gray-400">
-                                    Création d'applications Windows intuitives avec interfaces graphiques modernes.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- Skill with icon -->
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-10 h-10 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center">
-                                <i class="fas fa-video text-primary"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-md font-semibold">Création de vidéos animées</h4>
-                                <p class="text-sm text-gray-600 dark:text-gray-400">
-                                    Production de vidéos animées pour YouTube et d'autres plateformes.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- Skill with icon -->
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-10 h-10 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center">
-                                <i class="fas fa-book text-primary"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-md font-semibold">J'ai ecrit un livre</h4>
-                                <p class="text-sm text-gray-600 dark:text-gray-400">
-                                    Conception et développement de livres et cours interactifs et PDF illustrés.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- Skill with icon -->
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-10 h-10 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center">
-                                <i class="fas fa-cloud-upload-alt text-primary"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-md font-semibold">Déploiement GitHub Pages</h4>
-                                <p class="text-sm text-gray-600 dark:text-gray-400">
-                                    Publication et gestion de sites web via GitHub Pages.
-                                </p>
-                            </div>
-                        </div>
+                    <!-- Testimonial Quote -->
+                    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-600">
+                        <blockquote class="italic text-gray-600 dark:text-gray-300 text-center">
+                            <p>"Nous avons créé ce logiciel pour offrir une alternative simple, éthique et efficace aux solutions complexes du marché. Notre objectif est de démocratiser l'accès aux contenus YouTube tout en respectant votre vie privée."</p>
+                            <footer class="mt-2 font-medium">— L'équipe Romain Pro</footer>
+                        </blockquote>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-white dark:bg-dark-light">
+    <!-- Reviews Section -->
+    <section id="avis" class="py-16 bg-white dark:bg-gray-900">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl mx-auto text-center mb-16">
-                <h2 class="section-title text-3xl md:text-4xl font-bold mb-6 font-display">
-                    Mon <span class="text-primary">Parcours</span>
-                </h2>
-                <div class="w-20 h-1 bg-primary mx-auto mb-8 rounded-full"></div>
-                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Un aperçu de mon expérience et de mes réalisations principales.
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Avis des utilisateurs</h2>
+                <p class="mt-4 text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    Découvrez ce que nos utilisateurs pensent de notre outil
                 </p>
+                
+                <!-- Overall Rating -->
+                <div class="mt-6 flex justify-center">
+                    <div class="flex items-center bg-gray-50 dark:bg-gray-800 px-6 py-3 rounded-full shadow-sm">
+                        <div class="flex">
+                            <i class="fas fa-star text-yellow-400 text-xl"></i>
+                            <i class="fas fa-star text-yellow-400 text-xl"></i>
+                            <i class="fas fa-star text-yellow-400 text-xl"></i>
+                            <i class="fas fa-star text-yellow-400 text-xl"></i>
+                            <i class="fas fa-star-half-alt text-yellow-400 text-xl"></i>
+                        </div>
+                        <span class="ml-2 text-lg font-bold text-gray-700 dark:text-gray-300">4.7</span>
+                        <span class="ml-1 text-gray-500 dark:text-gray-400">/5</span>
+                        <span class="ml-2 text-sm text-gray-500 dark:text-gray-400">(basé sur 127 avis)</span>
+                    </div>
+                </div>
             </div>
             
-            <!-- Timeline -->
-            <div class="max-w-3xl mx-auto">
-                <!-- Timeline item 1 -->
-                <div class="timeline-item pb-12">
-                    <div class="ml-8">
-                        <span class="text-sm font-medium text-primary dark:text-primary-light inline-block mb-2">2023 - Présent</span>
-                        <h3 class="text-xl font-bold mb-2">Créateur d'un YouTube Downloader</h3>
-                        <p class="text-gray-700 dark:text-gray-300 mb-4">
-                            Développement d'une application Windows (.exe) pour télécharger des vidéos YouTube.
-                            Interface moderne et intuitive, traitement rapide et multiples formats disponibles.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded">Python</span>
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100 rounded">UI/UX</span>
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-100 rounded">Desktop App</span>
-                        </div>
-                    </div>
+            <!-- Reviews Container -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="reviews-container">
+                <!-- Reviews will be loaded here by JavaScript -->
+                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg animate-pulse">
+                    <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-4"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded mb-2.5"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-5/6 mb-2.5"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-4/6"></div>
                 </div>
-                
-                <!-- Timeline item 2 -->
-                <div class="timeline-item pb-12">
-                    <div class="ml-8">
-                        <span class="text-sm font-medium text-primary dark:text-primary-light inline-block mb-2">2022 - 2023</span>
-                        <h3 class="text-xl font-bold mb-2">Automatisation de vidéos animées</h3>
-                        <p class="text-gray-700 dark:text-gray-300 mb-4">
-                            Création d'un système automatisé pour produire des vidéos animées éducatives pour enfants.
-                            Optimisation du processus de création pour réduire le temps de production.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-100 rounded">Animation</span>
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-100 rounded">Automatisation</span>
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-100 rounded">Contenu éducatif</span>
-                        </div>
-                    </div>
+                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg animate-pulse">
+                    <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-4"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded mb-2.5"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-5/6 mb-2.5"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-4/6"></div>
                 </div>
-                
-                <!-- Timeline item 3 -->
-                <div class="timeline-item pb-12">
-                    <div class="ml-8">
-                        <span class="text-sm font-medium text-primary dark:text-primary-light inline-block mb-2">2021 - 2022</span>
-                        <h3 class="text-xl font-bold mb-2">Création de cours interactifs</h3>
-                        <p class="text-gray-700 dark:text-gray-300 mb-4">
-                            Conception et développement de cours interactifs et de PDF illustrés pour faciliter
-                            l'apprentissage. Utilisation de techniques pédagogiques modernes pour améliorer l'engagement.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-100 rounded">E-learning</span>
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded">Design</span>
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100 rounded">Interactivité</span>
-                        </div>
-                    </div>
+                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg animate-pulse">
+                    <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-4"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded mb-2.5"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-5/6 mb-2.5"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-4/6"></div>
                 </div>
-                
-                <!-- Timeline item 4 -->
-                <div class="timeline-item pb-12">
-                    <div class="ml-8">
-                        <span class="text-sm font-medium text-primary dark:text-primary-light inline-block mb-2">2020 - 2021</span>
-                        <h3 class="text-xl font-bold mb-2">Projets universitaires</h3>
-                        <p class="text-gray-700 dark:text-gray-300 mb-4">
-                            Participation à divers projets en Java et bases de données dans le cadre
-                            de ma formation universitaire. Développement d'applications à visée éducative.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-100 rounded">Java</span>
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-100 rounded">SQL</span>
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded">Travail d'équipe</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Timeline item 5 -->
-                <div class="timeline-item">
-                    <div class="ml-8">
-                        <span class="text-sm font-medium text-primary dark:text-primary-light inline-block mb-2">2019 - 2020</span>
-                        <h3 class="text-xl font-bold mb-2">Déploiement GitHub Pages</h3>
-                        <p class="text-gray-700 dark:text-gray-300 mb-4">
-                            Apprentissage des techniques de déploiement via GitHub Pages et mise en ligne
-                            réussie de mes premiers projets web. Exploration des fonctionnalités de Git.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-100 rounded">Git</span>
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded">Déploiement</span>
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded">Web</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-gray-50 dark:bg-dark">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl mx-auto text-center mb-16">
-                <h2 class="section-title text-3xl md:text-4xl font-bold mb-6 font-display">
-                    Mes <span class="text-primary">Projets</span>
-                </h2>
-                <div class="w-20 h-1 bg-primary mx-auto mb-8 rounded-full"></div>
-                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Découvrez mes réalisations récentes et projets phares.
-                </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Project Card 1 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
-                    <div class="relative overflow-hidden h-48 md:h-60">
-                        <div class="absolute inset-0 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                            <!-- YouTube Downloader Screenshot -->
-                            <svg class="w-20 h-20 text-gray-400 dark:text-gray-600" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C1.5 3.42.157 5.817.18 9.548c-.023 3.731 1.32 6.128 4.205 6.364 3.599.245 11.626.246 15.23 0 2.885-.236 4.228-2.633 4.205-6.364.023-3.73-1.32-6.128-4.205-6.364zM9.5 15.5V8.5l6.5 3.5-6.5 3.5z"/>
-                            </svg>
-                        </div>
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800' fill='none'%3E%3Crect width='1200' height='800' fill='%23f3f4f6'/%3E%3Cpath d='M600 400m-150 0a150 150 0 1 0 300 0a150 150 0 1 0 -300 0' fill='%23d1d5db'/%3E%3Cpath d='M550 350L675 400L550 450V350Z' fill='%239ca3af'/%3E%3C/svg%3E" alt="YouTube Downloader" class="project-card-image w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">YouTube Downloader</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">
-                            Application Windows intuitive pour télécharger des vidéos YouTube en différents formats (MP4, MP3).
-                            Interface moderne et processus simple en quelques clics.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-5">
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded">Python</span>
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100 rounded">UI/UX</span>
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-100 rounded">Windows</span>
-                        </div>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="https://github.com/Romainpro390/youtube-downloader-romainpro" target="_blank" class="inline-flex items-center text-sm font-medium text-primary hover:text-primary-dark dark:hover:text-primary-light">
-                                <i class="fab fa-github mr-1"></i> Code Source
-                            </a>
-                            <a href="https://romainpro390.github.io/youtube-downloader-romainpro/" target="_blank" class="inline-flex items-center text-sm font-medium text-primary hover:text-primary-dark dark:hover:text-primary-light">
-                                <i class="fas fa-external-link-alt mr-1"></i> Site Web
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <!-- Review Form -->
+            <div class="mt-12 max-w-2xl mx-auto bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Laissez votre avis</h3>
                 
-                <!-- Project Card 2 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
-                    <div class="relative overflow-hidden h-48 md:h-60">
-                        <div class="absolute inset-0 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                            <!-- Video Automation Screenshot -->
-                            <svg class="w-20 h-20 text-gray-400 dark:text-gray-600" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v12h16V6H4zm6 3 5 3-5 3V9z"/>
-                            </svg>
-                        </div>
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800' fill='none'%3E%3Crect width='1200' height='800' fill='%23f8fafc'/%3E%3Crect x='200' y='200' width='800' height='450' rx='20' fill='%23e2e8f0'/%3E%3Crect x='300' y='300' width='600' height='250' rx='10' fill='%23cbd5e1'/%3E%3Cpath d='M500 350L625 425L500 500V350Z' fill='%2394a3b8'/%3E%3C/svg%3E" alt="Automatisation Vidéo" class="project-card-image w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Automatisation de Vidéos</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">
-                            Système d'automatisation pour la création de vidéos animées éducatives.
-                            Optimisé pour produire rapidement du contenu de qualité pour les enfants.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-5">
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-100 rounded">Automatisation</span>
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-100 rounded">Animation</span>
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-100 rounded">Éducation</span>
-                        </div>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="#" class="inline-flex items-center text-sm font-medium text-gray-400 dark:text-gray-500 cursor-not-allowed">
-                                <i class="fab fa-github mr-1"></i> Code Privé
-                            </a>
-                            <a href="#contact" class="inline-flex items-center text-sm font-medium text-primary hover:text-primary-dark dark:hover:text-primary-light">
-                                <i class="fas fa-info-circle mr-1"></i> Plus d'infos
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project Card 3 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
-                    <div class="relative overflow-hidden h-48 md:h-60">
-                        <div class="absolute inset-0 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                            <!-- Interactive Books Screenshot -->
-                            <svg class="w-20 h-20 text-gray-400 dark:text-gray-600" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M21 4H3a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zm-1 14H4V6h16v12zM8 10h8v2H8v-2z"/>
-                            </svg>
-                        </div>
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800' fill='none'%3E%3Crect width='1200' height='800' fill='%23f1f5f9'/%3E%3Crect x='250' y='200' width='700' height='400' rx='10' fill='%23e2e8f0'/%3E%3Crect x='300' y='250' width='250' height='300' fill='%23cbd5e1'/%3E%3Crect x='600' y='250' width='300' height='300' fill='%23cbd5e1'/%3E%3Crect x='600' y='260' width='280' height='20' fill='%2394a3b8'/%3E%3Crect x='600' y='290' width='280' height='20' fill='%2394a3b8'/%3E%3Crect x='600' y='320' width='280' height='20' fill='%2394a3b8'/%3E%3Crect x='600' y='350' width='220' height='20' fill='%2394a3b8'/%3E%3C/svg%3E" alt="Livres Interactifs" class="project-card-image w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Livres Interactifs</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">
-                            Création de livres interactifs et de supports pédagogiques illustrés.
-                            Combinaison parfaite entre contenu enrichissant et expérience utilisateur immersive.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-5">
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-100 rounded">E-Learning</span>
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded">Design</span>
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100 rounded">Pédagogie</span>
-                        </div>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="#" class="inline-flex items-center text-sm font-medium text-gray-400 dark:text-gray-500 cursor-not-allowed">
-                                <i class="fas fa-book-open mr-1"></i> Projet privé
-                            </a>
-                            <a href="#contact" class="inline-flex items-center text-sm font-medium text-primary hover:text-primary-dark dark:hover:text-primary-light">
-                                <i class="fas fa-envelope mr-1"></i> Demander un échantillon
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project Card 4 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
-                    <div class="relative overflow-hidden h-48 md:h-60">
-                        <div class="absolute inset-0 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                            <!-- Portfolio Website Screenshot -->
-                            <svg class="w-20 h-20 text-gray-400 dark:text-gray-600" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm14 8V5H5v6h14zm0 2H5v6h14v-6zM8 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-                            </svg>
-                        </div>
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800' fill='none'%3E%3Crect width='1200' height='800' fill='%23f8fafc'/%3E%3Crect x='0' y='0' width='1200' height='100' fill='%23e2e8f0'/%3E%3Crect x='20' y='35' width='180' height='30' rx='5' fill='%23cbd5e1'/%3E%3Crect x='800' y='35' width='80' height='30' rx='5' fill='%23cbd5e1'/%3E%3Crect x='900' y='35' width='80' height='30' rx='5' fill='%23cbd5e1'/%3E%3Crect x='1000' y='35' width='80' height='30' rx='5' fill='%23cbd5e1'/%3E%3Crect x='1100' y='35' width='80' height='30' rx='5' fill='%23cbd5e1'/%3E%3Crect x='200' y='200' width='800' height='200' rx='10' fill='%23e2e8f0'/%3E%3Crect x='250' y='450' width='300' height='300' rx='10' fill='%23e2e8f0'/%3E%3Crect x='600' y='450' width='300' height='300' rx='10' fill='%23e2e8f0'/%3E%3C/svg%3E" alt="Portfolio Web" class="project-card-image w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Portfolio Professionnel</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">
-                            Site web portfolio professionnel pour présenter mes compétences et réalisations.
-                            Design moderne, responsive et adapté pour tous les appareils.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-5">
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded">HTML/CSS</span>
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-100 rounded">JavaScript</span>
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-100 rounded">GitHub Pages</span>
-                        </div>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="#" class="inline-flex items-center text-sm font-medium text-primary hover:text-primary-dark dark:hover:text-primary-light">
-                                <i class="fas fa-eye mr-1"></i> Vous le visitez actuellement
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Application Rating Section -->
-    <section id="rating" class="py-20 bg-white dark:bg-dark-light">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl mx-auto text-center mb-16">
-                <h2 class="section-title text-3xl md:text-4xl font-bold mb-6 font-display">
-                    Noter mon <span class="text-primary">application</span>
-                </h2>
-                <div class="w-20 h-1 bg-primary mx-auto mb-8 rounded-full"></div>
-                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Votre avis est précieux ! Évaluez mon YouTube Downloader et partagez vos commentaires.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <!-- Rating Form -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
-                    <h3 class="text-xl font-bold mb-6">Laissez votre avis</h3>
-                    
-                    <form id="rating-form" class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Votre nom</label>
-                            <input type="text" id="name" name="name" class="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 focus:ring-primary focus:border-primary bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-base" required>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Votre note</label>
-                            <div class="flex" id="rating-stars">
-                                <label class="rating-label cursor-pointer p-2" data-rating="1">
-                                    <input type="radio" name="rating" value="1" class="sr-only">
-                                    <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-2xl"></i>
-                                </label>
-                                <label class="rating-label cursor-pointer p-2" data-rating="2">
-                                    <input type="radio" name="rating" value="2" class="sr-only">
-                                    <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-2xl"></i>
-                                </label>
-                                <label class="rating-label cursor-pointer p-2" data-rating="3">
-                                    <input type="radio" name="rating" value="3" class="sr-only">
-                                    <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-2xl"></i>
-                                </label>
-                                <label class="rating-label cursor-pointer p-2" data-rating="4">
-                                    <input type="radio" name="rating" value="4" class="sr-only">
-                                    <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-2xl"></i>
-                                </label>
-                                <label class="rating-label cursor-pointer p-2" data-rating="5">
-                                    <input type="radio" name="rating" value="5" class="sr-only">
-                                    <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-2xl"></i>
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label for="comment" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Votre commentaire</label>
-                            <textarea id="comment" name="comment" rows="4" class="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 focus:ring-primary focus:border-primary bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-base" required></textarea>
-                        </div>
-                        
-                        <div>
-                            <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded-md shadow-sm transition-colors duration-300 focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                                Soumettre mon avis
-                            </button>
-                        </div>
-                    </form>
-                    
-                    <div id="form-message" class="mt-4 text-center hidden"></div>
-                </div>
-                
-                <!-- Reviews Display -->
-                <div>
-                    <h3 class="text-xl font-bold mb-6">Avis des utilisateurs</h3>
-                    
-                    <div id="reviews-container" class="space-y-4 max-h-[400px] overflow-y-auto pr-2">
-                        <!-- Reviews will be dynamically added here -->
-                        <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 card-hover">
-                            <div class="flex items-center mb-2">
-                                <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-300 font-semibold">
-                                    M
-                                </div>
-                                <div class="ml-3">
-                                    <h4 class="font-medium">Marie Dupont</h4>
-                                    <div class="flex">
-                                        <i class="fas fa-star text-yellow-400"></i>
-                                        <i class="fas fa-star text-yellow-400"></i>
-                                        <i class="fas fa-star text-yellow-400"></i>
-                                        <i class="fas fa-star text-yellow-400"></i>
-                                        <i class="fas fa-star text-yellow-400"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-400">
-                                Excellente application, simple à utiliser et très efficace. Je télécharge toutes mes vidéos préférées sans problème !
-                            </p>
-                        </div>
-                        
-                        <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 card-hover">
-                            <div class="flex items-center mb-2">
-                                <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center text-green-600 dark:text-green-300 font-semibold">
-                                    T
-                                </div>
-                                <div class="ml-3">
-                                    <h4 class="font-medium">Thomas Martin</h4>
-                                    <div class="flex">
-                                        <i class="fas fa-star text-yellow-400"></i>
-                                        <i class="fas fa-star text-yellow-400"></i>
-                                        <i class="fas fa-star text-yellow-400"></i>
-                                        <i class="fas fa-star text-yellow-400"></i>
-                                        <i class="far fa-star text-yellow-400"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-400">
-                                Très bonne application. J'aimerais juste pouvoir télécharger des playlists entières d'un coup, mais sinon c'est parfait !
-                            </p>
-                        </div>
-                        
-                        <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 card-hover">
-                            <div class="flex items-center mb-2">
-                                <div class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center text-purple-600 dark:text-purple-300 font-semibold">
-                                    S
-                                </div>
-                                <div class="ml-3">
-                                    <h4 class="font-medium">Sophie Bernard</h4>
-                                    <div class="flex">
-                                        <i class="fas fa-star text-yellow-400"></i>
-                                        <i class="fas fa-star text-yellow-400"></i>
-                                        <i class="fas fa-star text-yellow-400"></i>
-                                        <i class="fas fa-star text-yellow-400"></i>
-                                        <i class="fas fa-star text-yellow-400"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-400">
-                                Enfin une application sans publicités intrusives ! L'interface est claire et le téléchargement est très rapide.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-50 dark:bg-dark relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-1/3 h-full bg-primary/5 dark:bg-primary/10 -skew-x-12 transform origin-top-right"></div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="max-w-3xl mx-auto text-center mb-16">
-                <h2 class="section-title text-3xl md:text-4xl font-bold mb-6 font-display">
-                    Me <span class="text-primary">Contacter</span>
-                </h2>
-                <div class="w-20 h-1 bg-primary mx-auto mb-8 rounded-full"></div>
-                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Une question, une proposition de collaboration ou un projet ? N'hésitez pas à me contacter !
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-                <!-- Contact Form -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
-                    <h3 class="text-xl font-bold mb-6">Envoyez-moi un message</h3>
-                    
-                    <form id="contact-form" class="space-y-6">
-                        <div>
-                            <label for="contact-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Votre nom</label>
-                            <input type="text" id="contact-name" name="name" class="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 focus:ring-primary focus:border-primary bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-base" required>
-                        </div>
-                        
-                        <div>
-                            <label for="contact-email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Votre email</label>
-                            <input type="email" id="contact-email" name="email" class="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 focus:ring-primary focus:border-primary bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-base" required>
-                        </div>
-                        
-                        <div>
-                            <label for="contact-message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Votre message</label>
-                            <textarea id="contact-message" name="message" rows="5" class="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 focus:ring-primary focus:border-primary bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-base" required></textarea>
-                        </div>
-                        
-                        <div>
-                            <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded-md shadow-sm transition-colors duration-300 focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                                Envoyer le message
-                            </button>
-                        </div>
-                    </form>
-                    
-                    <div id="contact-message-result" class="mt-4 text-center hidden"></div>
-                </div>
-                
-                <!-- Contact Info -->
-                <div class="flex flex-col justify-between">
+                <form id="review-form" class="space-y-4">
                     <div>
-                        <h3 class="text-xl font-bold mb-6">Informations de contact</h3>
-                        
-                        <div class="space-y-4">
-                            <!-- WhatsApp -->
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center">
-                                    <i class="fab fa-whatsapp text-green-600 dark:text-green-400"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="font-medium">WhatsApp</h4>
-                                    <a href="https://wa.me/243846006009" target="_blank" class="text-primary hover:text-primary-dark dark:hover:text-primary-light">+243 846 006 009</a>
-                                </div>
-                            </div>
-                            
-                            <!-- Email -->
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-red-100 dark:bg-red-900 flex items-center justify-center">
-                                    <i class="fas fa-envelope text-red-600 dark:text-red-400"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="font-medium">Email</h4>
-                                    <p class="text-gray-600 dark:text-gray-400">contact@romainpro.com</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-10">
-                            <h3 class="text-xl font-bold mb-6">Retrouvez-moi sur</h3>
-                            
-                            <div class="flex space-x-5">
-                                <a href="https://github.com/Romainpro390" target="_blank" class="h-12 w-12 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors duration-300">
-                                    <i class="fab fa-github text-xl"></i>
-                                </a>
-                                <a href="https://www.linkedin.com/in/romain-kapuya-021852253/" target="_blank" class="h-12 w-12 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors duration-300">
-                                    <i class="fab fa-linkedin-in text-xl"></i>
-                                </a>
-                                <a href="https://www.instagram.com/romainpro20/" target="_blank" class="h-12 w-12 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors duration-300">
-                                    <i class="fab fa-instagram text-xl"></i>
-                                </a>
-                            </div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Votre nom</label>
+                        <input type="text" id="name" name="name" required
+                               class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md text-base focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Note</label>
+                        <div class="flex space-x-1" id="rating-container">
+                            <label class="rating-label cursor-pointer" data-rating="5">
+                                <input type="radio" name="rating" value="5" class="sr-only">
+                                <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-xl hover:text-yellow-400"></i>
+                            </label>
+                            <label class="rating-label cursor-pointer" data-rating="4">
+                                <input type="radio" name="rating" value="4" class="sr-only">
+                                <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-xl hover:text-yellow-400"></i>
+                            </label>
+                            <label class="rating-label cursor-pointer" data-rating="3">
+                                <input type="radio" name="rating" value="3" class="sr-only">
+                                <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-xl hover:text-yellow-400"></i>
+                            </label>
+                            <label class="rating-label cursor-pointer" data-rating="2">
+                                <input type="radio" name="rating" value="2" class="sr-only">
+                                <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-xl hover:text-yellow-400"></i>
+                            </label>
+                            <label class="rating-label cursor-pointer" data-rating="1">
+                                <input type="radio" name="rating" value="1" class="sr-only">
+                                <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-xl hover:text-yellow-400"></i>
+                            </label>
                         </div>
                     </div>
                     
-                    <!-- WhatsApp CTA -->
-                    <div class="mt-10 bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-100 dark:border-green-900/30">
-                        <h4 class="font-bold text-lg mb-2 flex items-center">
-                            <i class="fab fa-whatsapp text-green-600 dark:text-green-400 mr-2"></i>
-                            Contactez-moi directement
-                        </h4>
-                        <p class="text-gray-700 dark:text-gray-300 mb-4">
-                            Besoin d'une réponse rapide ? Envoyez-moi un message WhatsApp !
-                        </p>
-                        <a href="https://wa.me/243846006009" target="_blank" class="inline-flex items-center justify-center w-full py-3 px-4 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md shadow-sm transition-colors duration-300">
-                            <i class="fab fa-whatsapp mr-2"></i>
-                            Démarrer une conversation
-                        </a>
+                    <div>
+                        <label for="comment" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Votre commentaire</label>
+                        <textarea id="comment" name="comment" rows="3" required
+                                  class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md text-base focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white"></textarea>
                     </div>
-                </div>
+                    
+                    <button type="submit" 
+                            class="w-full bg-primary hover:bg-primary-hover text-white font-bold py-2 px-4 rounded-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                        Envoyer mon avis
+                    </button>
+                </form>
+                <div id="form-message" class="mt-3 text-center hidden"></div>
             </div>
+        </div>
+    </section>
+
+    <!-- Simplified CTA Banner -->
+    <section class="py-12 bg-primary dark:bg-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Prêt à essayer Youtube Downloader ?</h2>
+            <p class="text-lg text-blue-100 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+                Téléchargez gratuitement notre application et commencez à sauvegarder vos vidéos YouTube préférées dès maintenant.
+            </p>
+            <a href="https://tinyurl.com/yc5873y6" 
+               class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-lg transition-all duration-300">
+                <i class="fas fa-download mr-2"></i>
+                Télécharger l'application (.zip)
+            </a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 bg-gray-900 text-white">
+    <footer id="contact" class="bg-gray-900 text-white py-12">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-5xl mx-auto">
-                <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-                    <div class="text-2xl font-bold text-white mb-4 md:mb-0">
-                        <span class="font-display">Romain</span> <span class="font-light">Kapuya</span>
-                    </div>
-                    
-                    <div class="flex space-x-6">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Accueil</a>
-                        <a href="#projects" class="text-gray-400 hover:text-white transition-colors">Projets</a>
-                        <a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">À propos</h3>
+                    <p class="text-gray-400">
+                        Youtube Downloader - Romain Pro est une application de téléchargement de vidéos YouTube rapide, fiable et 100% gratuite.
+                    </p>
                 </div>
                 
-                <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
-                        © <span id="current-year"></span> Romain Kapuya. Tous droits réservés.
-                    </p>
-                    
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Accueil</a></li>
+                        <li><a href="#fonctionnalites" class="text-gray-400 hover:text-white transition-colors">Fonctionnalités</a></li>
+                        <li><a href="#pourquoi" class="text-gray-400 hover:text-white transition-colors">Pourquoi nous choisir</a></li>
+                        <li><a href="#avis" class="text-gray-400 hover:text-white transition-colors">Avis</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-2 text-primary"></i>
+                            contact@romainpro.fr
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-globe mr-2 text-primary"></i>
+                            www.romainpro.fr
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Réseaux sociaux</h3>
                     <div class="flex space-x-4">
-                        <a href="https://github.com/Romainpro390" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-github"></i>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/romain-kapuya-021852253/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-linkedin-in"></i>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
                         </a>
-                        <a href="https://www.instagram.com/romainpro20/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-instagram"></i>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-github text-xl"></i>
                         </a>
                     </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-400">
+                    © 2025 Romain Pro. Tous droits réservés.
+                </p>
+                <div class="mt-2 flex justify-center space-x-4 text-xs text-gray-500">
+                    <a href="#" class="hover:text-gray-400 transition-colors">Politique de confidentialité</a>
+                    <a href="#" class="hover:text-gray-400 transition-colors">Conditions d'utilisation</a>
+                    <a href="#" class="hover:text-gray-400 transition-colors">Mentions légales</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Back to top button -->
-    <button id="back-to-top" class="fixed bottom-6 right-6 h-12 w-12 rounded-full bg-primary text-white shadow-lg flex items-center justify-center transform transition-transform duration-300 translate-y-20 opacity-0">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
     <!-- JavaScript -->
     <script>
-        // Set current year in footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        // Toggle Mobile Menu
+        const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
+        
+        menuToggle.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-
-        // Close mobile menu when clicking on a link
+        
+        // Close mobile menu when clicking navigation links
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
             });
         });
 
-        // Dark/Light mode toggle
-        const themeToggle = document.getElementById('theme-toggle');
+        // Animated Counter
+        function animateCounter(elementId, targetValue) {
+            const element = document.getElementById(elementId);
+            const duration = 2000; // 2 seconds
+            const frameDuration = 1000/60; // 60fps
+            const totalFrames = Math.round(duration / frameDuration);
+            let frame = 0;
+            
+            const startValue = 0;
+            const valueIncrement = (targetValue - startValue) / totalFrames;
+            
+            const counter = setInterval(() => {
+                frame++;
+                const progress = frame / totalFrames;
+                const currentValue = Math.round(startValue + valueIncrement * frame);
+                
+                element.textContent = new Intl.NumberFormat().format(currentValue) + '+';
+                
+                if (frame === totalFrames) {
+                    clearInterval(counter);
+                }
+            }, frameDuration);
+        }
         
-        themeToggle.addEventListener('click', () => {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.theme = 'light';
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.theme = 'dark';
-            }
-        });
-
-        // Rating stars functionality
-        const ratingContainer = document.getElementById('rating-stars');
+        // Star Rating System
+        const ratingContainer = document.getElementById('rating-container');
         let selectedRating = 0;
-
+        
         ratingContainer.addEventListener('click', (e) => {
             const ratingLabel = e.target.closest('.rating-label');
             if (ratingLabel) {
                 const rating = parseInt(ratingLabel.dataset.rating);
                 selectedRating = rating;
                 
-                // Update star colors
-                document.querySelectorAll('#rating-stars .rating-label').forEach(label => {
+                // Update star appearance
+                document.querySelectorAll('.rating-label').forEach(label => {
                     const labelRating = parseInt(label.dataset.rating);
                     const star = label.querySelector('.rating-star');
                     
@@ -1190,205 +676,184 @@
                     }
                 });
                 
-                // Select the radio
+                // Select the radio input
                 ratingLabel.querySelector('input[type="radio"]').checked = true;
             }
         });
-
-        // Rating form submission
-        const ratingForm = document.getElementById('rating-form');
+        
+        // Sample reviews data
+        const reviews = [
+            {
+                name: "Marie Dupont",
+                rating: 5,
+                comment: "Application géniale ! Simple à utiliser et très rapide. Exactement ce que je cherchais depuis longtemps."
+            },
+            {
+                name: "Jean-Pierre Martin",
+                rating: 4,
+                comment: "Très bon outil, pratique et efficace. Le seul bémol est qu'il manque parfois certains formats de haute qualité."
+            },
+            {
+                name: "Sophie Leclerc",
+                rating: 5,
+                comment: "Je l'utilise tous les jours pour télécharger des tutoriels. Merci pour cette application gratuite et sans pub !"
+            },
+            {
+                name: "Thomas Petit",
+                rating: 5,
+                comment: "Enfin une application qui fonctionne sans problème ! J'ai essayé beaucoup d'autres solutions avant, mais celle-ci est de loin la meilleure."
+            },
+            {
+                name: "Camille Dubois",
+                rating: 4,
+                comment: "Très bonne application, interface intuitive. J'apprécie particulièrement la fonction d'extraction audio en MP3."
+            },
+            {
+                name: "Laurent Moreau",
+                rating: 5,
+                comment: "Merci pour ce logiciel extraordinaire ! Il m'a sauvé la vie pour mes projets vidéo."
+            }
+        ];
+        
+        // Function to render reviews
+        function renderReviews() {
+            const reviewsContainer = document.getElementById('reviews-container');
+            reviewsContainer.innerHTML = '';
+            
+            reviews.forEach(review => {
+                const reviewElement = document.createElement('div');
+                reviewElement.className = 'testimonial-card bg-gray-50 dark:bg-gray-800 p-6 rounded-xl shadow-sm transition-all duration-300';
+                
+                // Create stars based on rating
+                let starsHTML = '';
+                for (let i = 1; i <= 5; i++) {
+                    if (i <= review.rating) {
+                        starsHTML += '<i class="fas fa-star text-yellow-400"></i>';
+                    } else {
+                        starsHTML += '<i class="far fa-star text-yellow-400"></i>';
+                    }
+                }
+                
+                reviewElement.innerHTML = `
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg">
+                            ${review.name.charAt(0)}
+                        </div>
+                        <div class="ml-3">
+                            <h4 class="font-medium text-gray-900 dark:text-white">${review.name}</h4>
+                            <div class="flex text-sm">${starsHTML}</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">${review.comment}</p>
+                `;
+                
+                reviewsContainer.appendChild(reviewElement);
+            });
+        }
+        
+        // Handle review form submission
+        const reviewForm = document.getElementById('review-form');
         const formMessage = document.getElementById('form-message');
-        const reviewsContainer = document.getElementById('reviews-container');
-
-        ratingForm.addEventListener('submit', (e) => {
+        
+        reviewForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            const name = document.getElementById('name').value;
-            const comment = document.getElementById('comment').value;
+            const nameInput = document.getElementById('name');
+            const commentInput = document.getElementById('comment');
             
             if (selectedRating === 0) {
                 formMessage.textContent = "Veuillez sélectionner une note";
-                formMessage.className = "mt-4 text-center text-red-500 block";
+                formMessage.className = "mt-3 text-center text-red-500 dark:text-red-400";
+                formMessage.classList.remove('hidden');
                 return;
             }
             
-            // Create new review element
-            const newReview = document.createElement('div');
-            newReview.className = 'bg-gray-50 dark:bg-gray-800 rounded-lg p-4 card-hover animate-slide-up opacity-0';
-            
-            // Generate stars HTML based on rating
-            let starsHTML = '';
-            for (let i = 1; i <= 5; i++) {
-                if (i <= selectedRating) {
-                    starsHTML += '<i class="fas fa-star text-yellow-400"></i>';
-                } else {
-                    starsHTML += '<i class="far fa-star text-yellow-400"></i>';
-                }
+            if (!nameInput.value.trim() || !commentInput.value.trim()) {
+                formMessage.textContent = "Veuillez remplir tous les champs";
+                formMessage.className = "mt-3 text-center text-red-500 dark:text-red-400";
+                formMessage.classList.remove('hidden');
+                return;
             }
             
-            // Set initial letter for the avatar
-            const initial = name.charAt(0).toUpperCase();
+            // Simulate adding a new review
+            reviews.unshift({
+                name: nameInput.value,
+                rating: selectedRating,
+                comment: commentInput.value
+            });
             
-            // Generate random color for avatar
-            const colors = ['blue', 'green', 'purple', 'red', 'pink', 'indigo', 'teal'];
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            // Display success message
+            formMessage.textContent = "Merci pour votre avis !";
+            formMessage.className = "mt-3 text-center text-green-500 dark:text-green-400";
+            formMessage.classList.remove('hidden');
             
-            newReview.innerHTML = `
-                <div class="flex items-center mb-2">
-                    <div class="w-10 h-10 rounded-full bg-${randomColor}-100 dark:bg-${randomColor}-900 flex items-center justify-center text-${randomColor}-600 dark:text-${randomColor}-300 font-semibold">
-                        ${initial}
-                    </div>
-                    <div class="ml-3">
-                        <h4 class="font-medium">${name}</h4>
-                        <div class="flex">
-                            ${starsHTML}
-                        </div>
-                    </div>
-                </div>
-                <p class="text-gray-600 dark:text-gray-400">
-                    ${comment}
-                </p>
-            `;
-            
-            // Add the new review to the beginning of the container
-            reviewsContainer.insertBefore(newReview, reviewsContainer.firstChild);
-            
-            // Show animation
-            setTimeout(() => {
-                newReview.classList.add('opacity-100');
-            }, 10);
-            
-            // Reset the form
-            ratingForm.reset();
+            // Clear form
+            nameInput.value = '';
+            commentInput.value = '';
             selectedRating = 0;
             
-            // Reset star colors
-            document.querySelectorAll('#rating-stars .rating-label').forEach(label => {
+            // Reset stars
+            document.querySelectorAll('.rating-label').forEach(label => {
                 const star = label.querySelector('.rating-star');
                 star.classList.add('text-gray-300', 'dark:text-gray-600');
                 star.classList.remove('text-yellow-400');
             });
             
-            // Show success message
-            formMessage.textContent = "Merci pour votre avis !";
-            formMessage.className = "mt-4 text-center text-green-500 block";
+            // Uncheck all radio buttons
+            document.querySelectorAll('input[name="rating"]').forEach(input => {
+                input.checked = false;
+            });
             
-            // Hide message after delay
+            // Re-render reviews
+            renderReviews();
+            
+            // Hide message after 3 seconds
             setTimeout(() => {
-                formMessage.className = "mt-4 text-center hidden";
+                formMessage.classList.add('hidden');
             }, 3000);
         });
-
-        // Contact form submission
-        const contactForm = document.getElementById('contact-form');
-        const contactMessageResult = document.getElementById('contact-message-result');
-
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const name = document.getElementById('contact-name').value;
-            const email = document.getElementById('contact-email').value;
-            const message = document.getElementById('contact-message').value;
-            
-            // In a real implementation, this would send data to a server or email service
-            // For now, we'll just simulate a successful submission
-            
-            // Show loading state
-            contactMessageResult.innerHTML = '<div class="inline-block animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-primary"></div> Envoi en cours...';
-            contactMessageResult.className = "mt-4 text-center block text-gray-700 dark:text-gray-300";
-            
-            // Simulate network delay
-            setTimeout(() => {
-                contactForm.reset();
-                
-                contactMessageResult.innerHTML = '<i class="fas fa-check-circle text-green-500 mr-1"></i> Message envoyé avec succès !';
-                contactMessageResult.className = "mt-4 text-center block text-green-500";
-                
-                // Hide message after delay
-                setTimeout(() => {
-                    contactMessageResult.className = "mt-4 text-center hidden";
-                }, 4000);
-            }, 1500);
-        });
-
-        // Back to top button functionality
-        const backToTopButton = document.getElementById('back-to-top');
         
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                backToTopButton.classList.remove('translate-y-20', 'opacity-0');
-            } else {
-                backToTopButton.classList.add('translate-y-20', 'opacity-0');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Custom cursor effect for desktop
-        const cursor = document.querySelector('.custom-cursor');
-        
-        if (window.matchMedia('(min-width: 768px)').matches) {
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.width = '30px';
-                cursor.style.height = '30px';
-                cursor.style.left = `${e.clientX}px`;
-                cursor.style.top = `${e.clientY}px`;
-                cursor.style.transform = 'translate(-50%, -50%)';
-            });
-            
-            // Add effect on interactive elements
-            const interactiveElements = document.querySelectorAll('a, button, input, textarea, .rating-label');
-            
-            interactiveElements.forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    cursor.style.width = '50px';
-                    cursor.style.height = '50px';
-                    cursor.style.backgroundColor = 'rgba(93, 92, 222, 0.1)';
-                });
-                
-                el.addEventListener('mouseleave', () => {
-                    cursor.style.width = '30px';
-                    cursor.style.height = '30px';
-                    cursor.style.backgroundColor = 'rgba(93, 92, 222, 0.2)';
-                });
-            });
-        }
-
-        // Intersection Observer for scroll animations
-        const animatedElements = document.querySelectorAll('.section-title, .animate-slide-up, .animate-slide-down, .timeline-item, .project-card, .skill-badge');
-        
-        const observer = new IntersectionObserver(entries => {
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if (entry.target.classList.contains('animate-slide-up')) {
-                        entry.target.classList.add('animate-slide-up');
-                        entry.target.style.opacity = '1';
-                    } else if (entry.target.classList.contains('animate-slide-down')) {
-                        entry.target.classList.add('animate-slide-down');
-                        entry.target.style.opacity = '1';
-                    } else {
-                        entry.target.classList.add('animate-fade-in');
-                        entry.target.style.opacity = '1';
-                    }
+                    entry.target.classList.add('count-animation');
                     observer.unobserve(entry.target);
+                    
+                    // If it's the download counter, animate it
+                    if (entry.target.id === 'download-counter') {
+                        animateCounter('download-counter', 8500);
+                    }
                 }
             });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
+        }, { threshold: 0.1 });
         
-        animatedElements.forEach(el => {
-            if (!el.classList.contains('opacity-0')) {
-                el.style.opacity = '0';
-            }
+        // Observe elements for animations
+        document.querySelectorAll('.feature-card, .testimonial-card, #download-counter').forEach(el => {
             observer.observe(el);
         });
+        
+        // On page load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderReviews();
+            
+            // Simulate download counting if in viewport
+            const downloadCounter = document.getElementById('download-counter');
+            if (isInViewport(downloadCounter)) {
+                animateCounter('download-counter', 8500);
+            }
+        });
+        
+        // Helper function to check if element is in viewport
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
     </script>
 </body>
 </html>
