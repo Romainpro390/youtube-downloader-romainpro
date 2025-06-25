@@ -1,859 +1,1064 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Youtube Downloader - Romain Pro | Téléchargement de vidéos YouTube gratuit</title>
-    <meta name="description" content="Téléchargez vos vidéos YouTube préférées facilement et gratuitement avec notre application sans installation.">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            DEFAULT: '#1e3a8a', // Bleu foncé
-                            hover: '#1e40af',
-                        },
-                        secondary: {
-                            DEFAULT: '#10b981', // Vert
-                            hover: '#059669',
-                        },
-                        light: '#f9fafb',
-                        dark: '#111827',
-                    },
-                    fontFamily: {
-                        'sans': ['Montserrat', 'sans-serif'],
-                        'body': ['Roboto', 'sans-serif'],
-                    },
-                },
-            },
-        };
-    </script>
-    <style>
-        .custom-shadow {
-            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1), 0 10px 10px -5px rgba(59, 130, 246, 0.04);
-        }
-        
-        .screenshot {
-            filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px -5px rgba(59, 130, 246, 0.15), 0 10px 10px -5px rgba(59, 130, 246, 0.08);
-        }
-        
-        .testimonial-card {
-            transition: all 0.3s ease-in-out;
-        }
-        
-        .testimonial-card:hover {
-            transform: scale(1.03);
-        }
-        
-        .rating-star {
-            transition: all 0.2s ease;
-        }
-        
-        .rating-label:hover .rating-star,
-        .rating-label:hover ~ .rating-label .rating-star {
-            color: #facc15;
-        }
-        
-        .dark .rating-label:hover .rating-star,
-        .dark .rating-label:hover ~ .rating-label .rating-star {
-            color: #fbbf24;
-        }
-        
-        /* Animation de rebond pour le bouton de téléchargement */
-        @keyframes pulse-scale {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        .pulse-animation {
-            animation: pulse-scale 2s infinite;
-        }
-        
-        /* Animation du compteur */
-        @keyframes countUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .count-animation {
-            animation: countUp 1s ease-out forwards;
-        }
-        
-        /* Scroll doux */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* Style pour la barre de progression */
-        .progress-bar {
-            height: 8px;
-            background: linear-gradient(to right, #1e3a8a, #10b981);
-            border-radius: 4px;
-            transition: width 0.5s ease;
-        }
-        
-        /* Loader pour les avis */
-        .loader {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #1e3a8a;
-            border-bottom-color: transparent;
-            border-radius: 50%;
-            display: inline-block;
-            animation: rotation 1s linear infinite;
-        }
+    <link rel="stylesheet" href="index.css">
+    <title>Mon Univresité</title>
 
-        @keyframes rotation {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
 </head>
-<body class="font-sans bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
-    <!-- Détection du mode sombre -->
-    <script>
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.classList.add('dark');
-        }
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-            if (event.matches) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        });
-    </script>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+@media (max-width: 768px) {
 
-    <!-- Header -->
-    <header class="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <!-- Logo -->
-                <a href="#" class="flex items-center space-x-2">
-                    <svg class="w-10 h-10 text-primary dark:text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C1.5 3.42.157 5.817.18 9.548c-.023 3.731 1.32 6.128 4.205 6.364 3.599.245 11.626.246 15.23 0 2.885-.236 4.228-2.633 4.205-6.364.023-3.73-1.32-6.128-4.205-6.364zM9.5 15.5V8.5l6.5 3.5-6.5 3.5z"/>
-                    </svg>
-                    <div>
-                        <h1 class="text-xl font-bold text-primary dark:text-white">Youtube Downloader</h1>
-                        <p class="text-xs text-gray-600 dark:text-gray-400">Romain Pro</p>
-                    </div>
-                </a>
 
-                <!-- Navigation Desktop -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#fonctionnalites" class="font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white transition-colors">Fonctionnalités</a>
-                    <a href="#pourquoi" class="font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white transition-colors">Pourquoi nous choisir</a>
-                    <a href="#avis" class="font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white transition-colors">Avis</a>
-                    <a href="#contact" class="font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white transition-colors">Contact</a>
+body {
+    background:linear-gradient(rgba(255,255,255,0.7),rgb(215, 220, 230));
+    color: #333;
+    line-height: 1.6;
+ /*background: url('image/batiment.jpg');*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-wrap: wrap;
+}
+
+
+}
+
+.filtre{
+    width: 8%;
+    height: 80px;
+    border-radius: 50px;
+    margin-right: 45px;
+    right: 20%;
+    position: relative;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+/* entête */
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-right: 500px;
+}
+
+.logo span {
+    color: #3498db;
+}
+
+
+/* Navigation */
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 1.5rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 0.5rem 0;
+}
+
+nav ul li a:hover {
+    color: #3498db;
+    border-bottom: 2px solid #3498db;
+}
+
+/* Bouton menu mobile */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+/* Contenu principal */
+main {
+    padding: 2rem 0;
+    min-height: 70vh;
+}
+
+/* Système d'onglets pour les pages */
+.page {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+   /* color: #ecf0f1;*/
+}
+
+
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.services-grid2{
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+/* Styles communs pour les pages */
+h1 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 2.2rem;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.5rem;
+}
+
+h2 {
+    color: #3498db;
+    margin: 1.5rem 0 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* Section héros */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 5rem 1rem;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+}
+
+.hero h1 {
+    color: white;
+    border-bottom: none;
+    font-size: 2.5rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+/* Grille de services */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.service-card {
+    background-color: white;
+    border-radius: 5px;
+    padding: 1.5rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-card h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+/* Formulaire */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+textarea {
+    min-height: 150px;
+}
+
+/* FAQ */
+.faq-item {
+    margin-bottom: 1.5rem;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.faq-question {
+    font-weight: bold;
+    color: #2c3e50;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-answer {
+    margin-top: 1rem;
+    display: none;
+}
+
+.faq-answer.active {
+    display: block;
+}
+
+/* Témoignages */
+.testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.testimonial {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.testimonial:before {
+    content: '"';
+    font-size: 4rem;
+    color: #3498db;
+    opacity: 0.2;
+    position: absolute;
+    top: 0;
+    left: 10px;
+}
+
+.testimonial-author {
+    font-weight: bold;
+    margin-top: 1rem;
+    color: #2c3e50;
+}
+
+/* Pied de page */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    padding: 3rem 0 1rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-column h3 {
+    color: #3498db;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-column ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: #3498db;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+    
+    nav ul {
+        margin-top: 1rem;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav ul li {
+        margin: 0.5rem 0;
+    }
+    
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+    
+    nav {
+        display: none;
+        width: 100%;
+    }
+    
+    nav.active {
+        display: block;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+</style>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <img class="filtre" src="image/logo.jpeg" alt="un logo">
+                <div class="logo">ISC<span>Gombe</span></div>
+                <div class="menu-toggle">☰</div>
+                <nav id="main-nav">
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="accueil">Accueil</a></li>
+                        <li><a href="#" class="nav-link" data-page="apropos">À propos</a></li>
+                        <li><a href="#" class="nav-link" data-page="formations">Formations/Filières</a></li>
+                        <li><a href="#" class="nav-link" data-page="inscription">Inscription</a></li>
+                        <li><a href="#" class="nav-link" data-page="espace-candidat">Espace Candidat</a></li>
+                        
+                
+
+                    </ul>
                 </nav>
-
-                <!-- Toggle mobile menu -->
-                <button id="menu-toggle" class="md:hidden text-gray-700 dark:text-gray-300 focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg">
-            <div class="container mx-auto px-4 py-4 space-y-3">
-                <a href="#fonctionnalites" class="block font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white">Fonctionnalités</a>
-                <a href="#pourquoi" class="block font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white">Pourquoi nous choisir</a>
-                <a href="#avis" class="block font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white">Avis</a>
-                <a href="#contact" class="block font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white">Contact</a>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative py-16 md:py-24 bg-gradient-to-br from-blue-50 to-green-50 dark:from-gray-900 dark:to-gray-800">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div class="text-center md:text-left">
-                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
-                        Téléchargez vos vidéos <span class="text-primary">YouTube</span> facilement
-                    </h1>
-                    <p class="mt-4 text-xl text-gray-600 dark:text-gray-300">
-                        Simple, rapide et <span class="font-semibold text-secondary">100% gratuit</span>. Sans installation requise.
-                    </p>
-                    
-                    <!-- Download Button -->
-                    <div class="mt-8 flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="https://tinyurl.com/yc5873y6" 
-                           class="pulse-animation inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-secondary hover:bg-secondary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary shadow-lg transition-all duration-300">
-                            <i class="fas fa-download mr-2"></i>
-                            Télécharger l'application (.zip)
-                        </a>
-                        <div class="flex items-center justify-center md:justify-start text-sm text-gray-500 dark:text-gray-400">
-                            <i class="fas fa-shield-alt mr-2 text-primary"></i>
-                            Sans virus, vérifié par Avast
-                        </div>
+    <main class="container">
+        <!-- Page Accueil -->
+        <div id="accueil" class="page active">
+            <section class="hero">
+                <h1>Bienvenue à L'institut superieur de commerce Gombe (L'ISC GOMBE)</h1>
+                <p>Découvrez nos formations de qualité et préparez votre avenir professionnel avec nos experts</p>
+                <a href="#" class="btn nav-link" data-page="inscription">S'inscrire maintenant</a>
+            </section>
+            
+            <section>
+                <h2 class="Blanc">Nos Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>Formations diplômantes</h3>
+                        <p>Des programmes adaptés aux besoins du marché pour assurer votre employabilité.</p>
                     </div>
-                    
-                    <!-- Download Counter -->
-                    <div class="mt-6 flex justify-center md:justify-start items-center space-x-8">
-                        <div class="flex flex-col items-center md:items-start">
-                            <span class="text-sm text-gray-500 dark:text-gray-400">Téléchargements</span>
-                            <span id="download-counter" class="text-2xl font-bold text-primary">8,500+</span>
-                        </div>
-                        <div class="flex flex-col items-center md:items-start">
-                            <span class="text-sm text-gray-500 dark:text-gray-400">Satisfaction</span>
-                            <div class="flex items-center">
-                                <span class="text-2xl font-bold text-primary">97%</span>
-                                <div class="ml-2 w-16 h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
-                                    <div class="w-[97%] h-full bg-secondary rounded-full"></div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="service-card">
+                        <h3>Encadrement personnalisé</h3>
+                        <p>Un suivi individuel pour chaque étudiant tout au long de son parcours.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Bourses d'études</h3>
+                        <p>Des aides financières pour les étudiants méritants.</p>
                     </div>
                 </div>
-                
-                <!-- App Screenshot -->
-                <div class="relative flex justify-center">
-                    <div class="w-full max-w-md mx-auto relative">
-                        <!-- Génération d'une fausse capture d'écran d'application -->
-                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-xl screenshot">
-                            <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-t-lg flex items-center">
-                                <div class="flex space-x-2">
-                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                                </div>
-                                <div class="mx-auto text-center text-sm text-gray-500 dark:text-gray-400">Youtube Downloader - Romain Pro</div>
-                            </div>
-                            <div class="p-4">
-                                <div class="mb-4">
-                                    <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-md flex items-center">
-                                        <i class="fas fa-search text-gray-400 mr-2"></i>
-                                        <div class="text-sm text-gray-500 dark:text-gray-400">https://www.youtube.com/watch?v=qKg-PtXSfUw</div>
-                                    </div>
-                                </div>
-                                <div class="bg-primary bg-opacity-10 dark:bg-opacity-30 p-3 rounded-md mb-4">
-                                    <div class="h-32 bg-gray-200 dark:bg-gray-600 rounded-md flex items-center justify-center mb-2">
-                                        <i class="fas fa-play-circle text-4xl text-gray-400 dark:text-gray-500"></i>
-                                    </div>
-                                    <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Mon Titre de Vidéo - Chaîne Romain pro</div>
-                                    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">12:34 • 1080p HD</div>
-                                </div>
-                                <div class="flex space-x-2 mb-4">
-                                    <button class="flex-1 bg-secondary text-white rounded-md py-2 text-sm font-medium">MP4 1080p</button>
-                                    <button class="flex-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md py-2 text-sm font-medium">MP3 Audio</button>
-                                </div>
-                                <div class="bg-blue-50 dark:bg-gray-700 p-2 rounded-md text-xs text-blue-600 dark:text-blue-300">
-                                    <i class="fas fa-info-circle mr-1"></i> Prêt à télécharger. Cliquez sur un format pour commencer.
-                                </div>
-                            </div>
-                        </div>
+            </section>
+            
+            <section>
+                <h2>Témoignages</h2>
+                <div class="testimonials">
+                    <div class="testimonial">
+                        <p>Grâce à l'ISC Gombe, j'ai pu obtenir un diplôme reconnu et trouver un emploi rapidement après ma formation.</p>
+                        <div class="testimonial-author">- Jean D., Diplômé 2022</div>
                     </div>
+                    <div class="testimonial">
+                        <p>L'encadrement et la qualité des enseignements m'ont permis de réussir mon projet professionnel.</p>
+                        <div class="testimonial-author">- Marie K., Étudiante</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Page À propos -->
+        <div id="apropos" class="page">
+            <h1>À propos de nous</h1>
+            <p>L'université est une institution éducative fondée en 1962 avec pour mission de fournir une éducation de qualité accessible à tous.</p>
+            
+            <h2>Notre histoire</h2>
+            <p>Depuis notre création, nous avons formé plus de 5000 étudiants dans divers domaines professionnels. Notre approche pratique et orientée vers les compétences nous permet de maintenir un taux d'insertion professionnelle de 85% dans les 6 mois suivant l'obtention du diplôme.</p>
+            
+            <h2>Notre mission</h2>
+            <p>Nous nous engageons à:</p>
+            <ul>
+                <li>Offrir des formations adaptées aux besoins du marché</li>
+                <li>Promouvoir l'excellence académique et professionnelle</li>
+                <li>Favoriser l'épanouissement personnel de nos étudiants</li>
+                <li>Contribuer au développement de notre communauté</li>
+            </ul>
+            
+            <h2 class="Couleur">Nos valeurs</h2>
+            <div class="services-grid2">
+                <div class="service-card">
+                    <h3>Intégrité</h3>
+                    <p>Nous agissons avec éthique et transparence dans toutes nos activités.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Innovation</h3>
+                    <p>Nous adoptons des méthodes pédagogiques modernes et efficaces.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Engagement</h3>
+                    <p>Nous nous investissons pleinement dans la réussite de nos étudiants.</p>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Features Section -->
-    <section id="fonctionnalites" class="py-16 bg-white dark:bg-gray-900">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Fonctionnalités principales</h2>
-                <p class="mt-4 text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                    Notre application offre tout ce dont vous avez besoin pour télécharger vos vidéos YouTube préférées
-                </p>
+        <!-- Page Formations/Filières -->
+        <div id="formations" class="page">
+            <h1>Nos Formations et Filières</h1>
+            <p>Découvrez nos programmes de formation conçus pour répondre aux besoins du marché actuel.</p>
+            
+            <h2>Formations disponibles</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Informatique de Gestion</h3>
+                    <p>Développement web, programmation mobile, bases de données, cybersécurité</p>
+                    <p><strong>Durée:</strong> 5 ans</p>
+                    <p><strong>Diplôme:</strong> BTS en Informatique</p>
+                </div>
+                <div class="service-card">
+                    <h3>Gestions des Entreprises</h3>
+                    <p>Comptabilité, management, marketing, ressources humaines</p>
+                    <p><strong>Durée:</strong> 3 ans</p>
+                    <p><strong>Diplôme:</strong> BTS en Gestion</p>
+                </div>
+                <div class="service-card">
+                    <h3>Marketing et Vente</h3>
+                    <p>Marketing Digital, Gestion de Commerce, Entrepreneurial</p>
+                    <p><strong>Durée:</strong> 1 à 3 ans selon spécialité</p>
+                    <p><strong>Diplôme:</strong> Certificat ou Diplôme de Licence</p>
+                </div>
+                <div class="service-card">
+                    <h3>Logistique et Transport</h3>
+                    <p>Transport, Voie de Communication</p>
+                    <p><strong>Durée:</strong> 3 ans</p>
+                    <p><strong>Diplôme:</strong> Licence professionnelle</p>
+                </div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="feature-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300">
-                    <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-bolt text-xl text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Téléchargement rapide</h3>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        Téléchargez n'importe quelle vidéo YouTube en quelques secondes seulement, sans attente ni limitation.
-                    </p>
+            <h2>Conditions d'admission</h2>
+            <ul>
+                <li>Baccalauréat ou équivalent pour les formations de niveau licence</li>
+                <li>Brevet ou BEP pour les formations courtes</li>
+                <li>Test d'admission pour certaines filières</li>
+                <li>Entretien motivationnel</li>
+            </ul>
+            
+            <a href="#" class="btn nav-link" data-page="procedure-inscription">Voir la procédure complète</a>
+        </div>
+
+        <!-- Page Inscription -->
+        <div id="inscription" class="page">
+            <h1>Inscription</h1>
+            <p>Remplissez le formulaire ci-dessous pour commencer votre processus d'inscription.</p>
+            
+            <form id="form-inscription">
+                <div class="form-group">
+                    <label for="nom">Nom complet</label>
+                    <input type="text" id="nom" name="nom" required>
                 </div>
                 
-                <!-- Feature 2 -->
-                <div class="feature-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300">
-                    <div class="w-14 h-14 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-sliders-h text-xl text-secondary"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Formats multiples</h3>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        Choisissez parmi différents formats (MP4, MP3, AVI, etc.) et qualités (SD, HD, Full HD, 4K).
-                    </p>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
                 </div>
                 
-                <!-- Feature 3 -->
-                <div class="feature-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300">
-                    <div class="w-14 h-14 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-shield-alt text-xl text-purple-600 dark:text-purple-400"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Sans virus ni malware</h3>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        Notre application est certifiée sans virus et respecte votre confidentialité à 100%.
-                    </p>
+                <div class="form-group">
+                    <label for="telephone">Téléphone</label>
+                    <input type="tel" id="telephone" name="telephone" required>
+                    <label for="Date de naissance">Date de naissance</label>
+                    <input type="date" id="date" name="date" required>
+                    <label for="Date de naissance">Adresse Complet</label>
+                     <input type="Adresse" id="adresse" name="adresse" required>
+                     <label form="diplome">Dernier Diplôme obtenu</label>
+                        <input type="text" id="diplome" name="diplome">
+
                 </div>
                 
-                <!-- Feature 4 -->
-                <div class="feature-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300">
-                    <div class="w-14 h-14 bg-yellow-100 dark:bg-yellow-900 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-desktop text-xl text-yellow-600 dark:text-yellow-400"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Sans installation</h3>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        Utilisez l'application directement après téléchargement, sans installation complexe.
-                    </p>
+                <div class="form-group">
+                    <label for="formation">Filière souhaitée</label>
+                    <select id="formation" name="formation" required>
+                        <option value="">-- Sélectionnez --</option>
+                        <option value="informatique">Informatique de Gestion</option>
+                        <option value="gestion">Gestions des Entreprises</option>
+                        <option value="Marketing">Marketing et Vente </option>
+                        <option value="Finance">Finance et Comptabilité</option>
+                        <option value="Logistique et Transport">Logistique et Transport</option>
+                        <br>
+                        <br>
+                        
+                    </select>
                 </div>
                 
-                <!-- Feature 5 -->
-                <div class="feature-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300">
-                    <div class="w-14 h-14 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-language text-xl text-red-600 dark:text-red-400"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Multilingue</h3>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        Interface disponible en français, anglais, espagnol, allemand et plusieurs autres langues.
-                    </p>
+                <div class="form-group">
+                    <label for="niveau">Promotions</label>
+                    <select id="niveau" name="niveau" required>
+                        <option value="">-- Sélectionnez --</option>
+                        <option value="licence1">Licence 1</option>
+                        <option value="licence2">Licence 2</option>
+                        <option value="licence3">Licence 3</option>
+                        <option value="Master1">Master 1</option>
+                        <option value="Master2">Master 2</option>
+                        <br>
+                        
+                    </select>
                 </div>
                 
-                <!-- Feature 6 -->
-                <div class="feature-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300">
-                    <div class="w-14 h-14 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-ban text-xl text-indigo-600 dark:text-indigo-400"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Sans publicité</h3>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        Profitez d'une expérience propre et sans interruption, aucune publicité ni fenêtre pop-up.
-                    </p>
+                <div class="form-group">
+                    <label for="message">Message (facultatif)</label>
+                    <textarea id="message" name="message"></textarea>
                 </div>
+                
+                <button type="submit" class="btn">Envoyer la demande</button>
+            </form>
+            
+            <div style="margin-top: 2rem;">
+                <h2>Prochaines sessions</h2>
+                <ul>
+                    <li>Rentrée de septembre: inscriptions ouvertes jusqu'au 15 août</li>
+                    <li>Rentrée de janvier: inscriptions ouvertes jusqu'au 15 décembre</li>
+                </ul>
+                
+                <p>Pour plus d'informations sur le processus d'inscription, consultez notre <a href="#" class="nav-link" data-page="procedure-inscription">page dédiée</a>.</p>
             </div>
         </div>
-    </section>
 
-    <!-- Why Choose Us Section -->
-    <section id="pourquoi" class="py-16 bg-gray-50 dark:bg-gray-800">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Pourquoi choisir notre outil ?</h2>
-                    <p class="mt-4 text-xl text-gray-600 dark:text-gray-400">
-                        Notre mission est de vous offrir la meilleure expérience de téléchargement possible
-                    </p>
-                </div>
-                
-                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-8 custom-shadow">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-medium text-gray-900 dark:text-white">Solution 100% gratuite</h3>
-                                <p class="mt-2 text-base text-gray-600 dark:text-gray-300">
-                                    Notre outil restera toujours gratuit, sans fonctionnalités premium cachées.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
-                                    <i class="fas fa-lock"></i>
-                                </div>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-medium text-gray-900 dark:text-white">Sécurité garantie</h3>
-                                <p class="mt-2 text-base text-gray-600 dark:text-gray-300">
-                                    Téléchargez sans crainte, notre application est vérifiée et sécurisée.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
-                                    <i class="fas fa-heart"></i>
-                                </div>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-medium text-gray-900 dark:text-white">Développé avec passion</h3>
-                                <p class="mt-2 text-base text-gray-600 dark:text-gray-300">
-                                    Créé par des amateurs de vidéos pour des amateurs de vidéos.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
-                                    <i class="fas fa-sync-alt"></i>
-                                </div>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-medium text-gray-900 dark:text-white">Mises à jour régulières</h3>
-                                <p class="mt-2 text-base text-gray-600 dark:text-gray-300">
-                                    Notre outil s'adapte constamment aux changements de YouTube.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Testimonial Quote -->
-                    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-600">
-                        <blockquote class="italic text-gray-600 dark:text-gray-300 text-center">
-                            <p>"Nous avons créé ce logiciel pour offrir une alternative simple, éthique et efficace aux solutions complexes du marché. Notre objectif est de démocratiser l'accès aux contenus YouTube tout en respectant votre vie privée."</p>
-                            <footer class="mt-2 font-medium">— L'équipe Romain Pro</footer>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reviews Section -->
-    <section id="avis" class="py-16 bg-white dark:bg-gray-900">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Avis des utilisateurs</h2>
-                <p class="mt-4 text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                    Découvrez ce que nos utilisateurs pensent de notre outil
-                </p>
-                
-                <!-- Overall Rating -->
-                <div class="mt-6 flex justify-center">
-                    <div class="flex items-center bg-gray-50 dark:bg-gray-800 px-6 py-3 rounded-full shadow-sm">
-                        <div class="flex">
-                            <i class="fas fa-star text-yellow-400 text-xl"></i>
-                            <i class="fas fa-star text-yellow-400 text-xl"></i>
-                            <i class="fas fa-star text-yellow-400 text-xl"></i>
-                            <i class="fas fa-star text-yellow-400 text-xl"></i>
-                            <i class="fas fa-star-half-alt text-yellow-400 text-xl"></i>
-                        </div>
-                        <span class="ml-2 text-lg font-bold text-gray-700 dark:text-gray-300">4.7</span>
-                        <span class="ml-1 text-gray-500 dark:text-gray-400">/5</span>
-                        <span class="ml-2 text-sm text-gray-500 dark:text-gray-400">(basé sur 127 avis)</span>
-                    </div>
-                </div>
-            </div>
+        <!-- Page Espace Candidat -->
+        <div id="espace-candidat" class="page">
+            <h1>Espace Candidat</h1>
+            <p>Connectez-vous à votre espace personnel pour suivre votre dossier.</p>
             
-            <!-- Reviews Container -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="reviews-container">
-                <!-- Reviews will be loaded here by JavaScript -->
-                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg animate-pulse">
-                    <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-4"></div>
-                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded mb-2.5"></div>
-                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-5/6 mb-2.5"></div>
-                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-4/6"></div>
-                </div>
-                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg animate-pulse">
-                    <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-4"></div>
-                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded mb-2.5"></div>
-                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-5/6 mb-2.5"></div>
-                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-4/6"></div>
-                </div>
-                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg animate-pulse">
-                    <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-4"></div>
-                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded mb-2.5"></div>
-                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-5/6 mb-2.5"></div>
-                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-4/6"></div>
-                </div>
-            </div>
-            
-            <!-- Review Form -->
-            <div class="mt-12 max-w-2xl mx-auto bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md p-6">
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Laissez votre avis</h3>
-                
-                <form id="review-form" class="space-y-4">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Votre nom</label>
-                        <input type="text" id="name" name="name" required
-                               class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md text-base focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white">
+            <div style="max-width: 500px; margin: 0 auto; background-color: white; padding: 2rem; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                <h2 style="text-align: center;">Connexion</h2>
+                <form id="form-connexion">
+                    <div class="form-group">
+                        <label for="login-email">Email ou numéro de dossier</label>
+                        <input type="text" id="login-email" name="login-email" required>
                     </div>
                     
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Note</label>
-                        <div class="flex space-x-1" id="rating-container">
-                            <label class="rating-label cursor-pointer" data-rating="5">
-                                <input type="radio" name="rating" value="5" class="sr-only">
-                                <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-xl hover:text-yellow-400"></i>
-                            </label>
-                            <label class="rating-label cursor-pointer" data-rating="4">
-                                <input type="radio" name="rating" value="4" class="sr-only">
-                                <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-xl hover:text-yellow-400"></i>
-                            </label>
-                            <label class="rating-label cursor-pointer" data-rating="3">
-                                <input type="radio" name="rating" value="3" class="sr-only">
-                                <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-xl hover:text-yellow-400"></i>
-                            </label>
-                            <label class="rating-label cursor-pointer" data-rating="2">
-                                <input type="radio" name="rating" value="2" class="sr-only">
-                                <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-xl hover:text-yellow-400"></i>
-                            </label>
-                            <label class="rating-label cursor-pointer" data-rating="1">
-                                <input type="radio" name="rating" value="1" class="sr-only">
-                                <i class="rating-star fas fa-star text-gray-300 dark:text-gray-600 text-xl hover:text-yellow-400"></i>
-                            </label>
-                        </div>
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" id="password" name="password" required>
                     </div>
                     
-                    <div>
-                        <label for="comment" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Votre commentaire</label>
-                        <textarea id="comment" name="comment" rows="3" required
-                                  class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md text-base focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white"></textarea>
-                    </div>
-                    
-                    <button type="submit" 
-                            class="w-full bg-primary hover:bg-primary-hover text-white font-bold py-2 px-4 rounded-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                        Envoyer mon avis
-                    </button>
+                    <button type="submit" class="btn" style="width: 100%;">Se connecter</button>
                 </form>
-                <div id="form-message" class="mt-3 text-center hidden"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Simplified CTA Banner -->
-    <section class="py-12 bg-primary dark:bg-gray-800">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Prêt à essayer Youtube Downloader ?</h2>
-            <p class="text-lg text-blue-100 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-                Téléchargez gratuitement notre application et commencez à sauvegarder vos vidéos YouTube préférées dès maintenant.
-            </p>
-            <a href="https://tinyurl.com/yc5873y6" 
-               class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-lg transition-all duration-300">
-                <i class="fas fa-download mr-2"></i>
-                Télécharger l'application (.zip)
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact" class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">À propos</h3>
-                    <p class="text-gray-400">
-                        Youtube Downloader - Romain Pro est une application de téléchargement de vidéos YouTube rapide, fiable et 100% gratuite.
-                    </p>
-                </div>
                 
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Liens rapides</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Accueil</a></li>
-                        <li><a href="#fonctionnalites" class="text-gray-400 hover:text-white transition-colors">Fonctionnalités</a></li>
-                        <li><a href="#pourquoi" class="text-gray-400 hover:text-white transition-colors">Pourquoi nous choisir</a></li>
-                        <li><a href="#avis" class="text-gray-400 hover:text-white transition-colors">Avis</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
-                    <ul class="space-y-2">
-                        <li class="flex items-center text-gray-400">
-                            <i class="fas fa-envelope mr-2 text-primary"></i>
-                            romainkapuya17@gmail.com
-                        </li>
-                        <li class="flex items-center text-gray-400">
-                            <i class="fas fa-globe mr-2 text-primary"></i>
-                            www.romainpro.fr
-                        </li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Réseaux sociaux</h3>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-facebook text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-twitter text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-instagram text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-github text-xl"></i>
-                        </a>
-                    </div>
+                <div style="margin-top: 1.5rem; text-align: center;">
+                    <p><a href="#">Mot de passe oublié ?</a></p>
+                    <p>Pas encore de compte ? <a href="#" class="nav-link" data-page="inscription">S'inscrire</a></p>
                 </div>
             </div>
             
-            <div class="mt-8 pt-8 border-t border-gray-800 text-center">
-                <p class="text-gray-400">
-                    © 2025 Romain Pro. Tous droits réservés.
-                </p>
-                <div class="mt-2 flex justify-center space-x-4 text-xs text-gray-500">
-                    <a href="#" class="hover:text-gray-400 transition-colors">Politique de confidentialité</a>
-                    <a href="#" class="hover:text-gray-400 transition-colors">Conditions d'utilisation</a>
-                    <a href="#" class="hover:text-gray-400 transition-colors">Mentions légales</a>
+            <div style="margin-top: 3rem;">
+                <h2>Fonctionnalités de l'espace candidat</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>Suivi de dossier</h3>
+                        <p>Consultez l'état d'avancement de votre dossier d'inscription en temps réel.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Documents à fournir</h3>
+                        <p>Téléchargez les documents nécessaires et suivez ceux déjà reçus par l'administration.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Communication</h3>
+                        <p>Échangez directement avec le service des admissions via la messagerie sécurisée.</p>
+                    </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Page Procédure Inscription -->
+        <div id="procedure-inscription" class="page">
+            <h1>Procédure d'Inscription</h1>
+            <p>Voici les étapes à suivre pour compléter votre inscription à L'isc/Gombe.</p>
+            
+            <h2>Étape 1: Pré-inscription en ligne</h2>
+            <p>Remplissez le formulaire de pré-inscription disponible sur notre <a href="#" class="nav-link" data-page="inscription">page d'inscription</a>. Vous recevrez un email de confirmation avec votre numéro de dossier.</p>
+            
+            <h2>Étape 2: Constitution du dossier</h2>
+            <p>Préparez les documents suivants:</p>
+            <ul>
+                <li>Copie certifiée du diplôme le plus élevé obtenu</li>
+                <li>Relevés de notes des deux dernières années</li>
+                <li>Copie de la pièce d'identité</li>
+                <li>4 photos d'identité récentes</li>
+                <li>Certificat médical</li>
+                <li>Lettre de motivation</li>
+            </ul>
+            
+            <h2>Étape 3: Test et entretien</h2>
+            <p>Pour certaines filières, vous serez convoqué pour:</p>
+            <ul>
+                <li>Un test écrit d'évaluation des connaissances</li>
+                <li>Un entretien avec un membre du jury pédagogique</li>
+            </ul>
+            
+            <h2>Étape 4: Validation finale</h2>
+            <p>Une fois votre dossier complet et les tests réussis, vous recevrez une lettre d'admission définitive.</p>
+            
+            <h2>Étape 5: Paiement des frais</h2>
+            <p>Effectuez le paiement des frais de scolarité selon les modalités indiquées dans votre lettre d'admission.</p>
+            
+            <h2>Calendrier</h2>
+            <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+                <tr style="background-color: #3498db; color: white;">
+                    <th style="padding: 0.8rem; text-align: left;">Événement</th>
+                    <th style="padding: 0.8rem; text-align: left;">Date limite</th>
+                </tr>
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="padding: 0.8rem;">Pré-inscription en ligne</td>
+                    <td style="padding: 0.8rem;">15 août pour la rentrée de septembre</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="padding: 0.8rem;">Dépôt des dossiers complets</td>
+                    <td style="padding: 0.8rem;">30 août</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="padding: 0.8rem;">Tests et entretiens</td>
+                    <td style="padding: 0.8rem;">1-5 septembre</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="padding: 0.8rem;">Publication des résultats</td>
+                    <td style="padding: 0.8rem;">10 septembre</td>
+                </tr>
+                <tr>
+                    <td style="padding: 0.8rem;">Paiement des frais</td>
+                    <td style="padding: 0.8rem;">15 septembre</td>
+                </tr>
+            </table>
+            
+            <p>Pour toute question, consultez notre <a href="#" class="nav-link" data-page="faq">FAQ</a> ou <a href="#" class="nav-link" data-page="contact">contactez-nous</a>.</p>
+        </div>
+
+        <!-- Page Services Bourse -->
+        <div id="services-bourse" class="page">
+            <h1>Services de Bourse</h1>
+            <p>Nous offrons plusieurs dispositifs d'aide financière pour faciliter l'accès à nos formations.</p>
+            
+            <h2>Types de bourses disponibles</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Bourse d'excellence</h3>
+                    <p><strong>Critères:</strong> Résultats académiques exceptionnels</p>
+                    <p><strong>Couverture:</strong> Jusqu'à 100% des frais de scolarité</p>
+                    <p><strong>Durée:</strong> Renouvelable chaque année sur maintien des résultats</p>
+                </div>
+                <div class="service-card">
+                    <h3>Bourse sociale</h3>
+                    <p><strong>Critères:</strong> Situation financière difficile</p>
+                    <p><strong>Couverture:</strong> 30% à 70% des frais de scolarité</p>
+                    <p><strong>Durée:</strong> Toute la durée de la formation</p>
+                </div>
+                <div class="service-card">
+                    <h3>Bourse spéciale</h3>
+                    <p><strong>Critères:</strong> Talent particulier (sport, art, etc.) ou situation exceptionnelle</p>
+                    <p><strong>Couverture:</strong> Variable selon le cas</p>
+                    <p><strong>Durée:</strong> Définie cas par cas</p>
+                </div>
+            </div>
+            
+            <h2>Comment postuler ?</h2>
+            <ol>
+                <li>Complétez votre dossier d'admission à la formation</li>
+                <li>Téléchargez le formulaire de demande de bourse depuis votre espace candidat</li>
+                <li>Joignez les documents justificatifs (revenus familiaux, bulletins de notes, etc.)</li>
+                <li>Soumettez votre demande avant la date limite</li>
+            </ol>
+            
+            <h2>Calendrier des bourses</h2>
+            <ul>
+                <li><strong>15 juillet:</strong> Ouverture des candidatures</li>
+                <li><strong>30 août:</strong> Date limite de dépôt des dossiers</li>
+                <li><strong>15 septembre:</strong> Publication des résultats</li>
+            </ul>
+            
+            <div style="background-color: #e3f2fd; padding: 1.5rem; border-radius: 5px; margin-top: 2rem;">
+                <h3>Informations importantes</h3>
+                <p>Les bourses sont attribuées sur la base du mérite et des besoins. Le nombre de bourses est limité et l'attribution est soumise à l'approbation du comité des bourses.</p>
+                <p>Les étudiants bénéficiaires doivent maintenir un bon niveau académique pour conserver leur bourse.</p>
+            </div>
+            
+            <p style="margin-top: 2rem;">Pour plus d'informations, consultez notre <a href="#" class="nav-link" data-page="faq">FAQ</a> ou <a href="#" class="nav-link" data-page="contact">contactez</a> le service des bourses.</p>
+        </div>
+
+        <!-- Page FAQ -->
+        <div id="faq" class="page">
+            <h1>Foire Aux Questions</h1>
+            <p>Retrouvez ici les réponses aux questions les plus fréquemment posées.</p>
+            
+            <div class="faq-item">
+                <div class="faq-question">Quels sont les documents nécessaires pour l'inscription ? <span>+</span></div>
+                <div class="faq-answer">
+                    <p>Les documents généralement requis sont :</p>
+                    <ul>
+                        <li>Copie certifiée du diplôme le plus élevé</li>
+                        <li>Relevés de notes des deux dernières années</li>
+                        <li>Copie de la pièce d'identité</li>
+                        <li>4 photos d'identité</li>
+                        <li>Certificat médical</li>
+                        <li>Lettre de motivation</li>
+                    </ul>
+                    <p>La liste exacte peut varier selon la formation choisie.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Quand commence la rentrée academique ? <span>+</span></div>
+                <div class="faq-answer">
+                    <p>Nous avons deux rentrées principales :</p>
+                    <ul>
+                        <li>Rentrée de septembre : début des cours le 15 septembre</li>
+                        <li>Rentrée de janvier : début des cours le 15 janvier (pour certaines formations)</li>
+                    </ul>
+                    <p>Les dates exactes sont communiquées avec la lettre d'admission.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Comment savoir si je suis éligible à une bourse ? <span>+</span></div>
+                <div class="faq-answer">
+                    <p>L'éligibilité dépend du type de bourse :</p>
+                    <ul>
+                        <li>Bourse d'excellence : moyenne générale supérieure à 14/20</li>
+                        <li>Bourse sociale : revenus familiaux inférieurs à un certain seuil</li>
+                        <li>Bourse spéciale : évaluation au cas par cas</li>
+                    </ul>
+                    <p>Nous vous conseillons de postuler même si vous n'êtes pas certain de remplir tous les critères.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Y a-t-il des frais d'inscription ? <span>+</span></div>
+                <div class="faq-answer">
+                    <p>Oui, des frais de dossier de 5000Fc sont requis pour toute candidature. Ces frais ne sont pas remboursables et ne garantissent pas l'admission.</p>
+                    <p>Les frais academique varient selon la formation choisie et sont payables en plusieurs fois pour la plupart des programmes.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Comment se déroulent les cours ? <span>+</span></div>
+                <div class="faq-answer">
+                    <p>Nos formations combinent :</p>
+                    <ul>
+                        <li>Cours théoriques en présentiel</li>
+                        <li>Travaux pratiques en laboratoire ou atelier</li>
+                        <li>Projets individuels et en groupe</li>
+                        <li>Stages en entreprise (pour la plupart des formations)</li>
+                    </ul>
+                    <p>Certains modules peuvent être disponibles en ligne selon la formation.</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem;">
+                <h2>Vous ne trouvez pas réponse à votre question ?</h2>
+                <p>N'hésitez pas à <a href="#" class="nav-link" data-page="contact">nous contacter</a> directement. Notre équipe se fera un plaisir de vous répondre dans les plus brefs délais.</p>
+            </div>
+        </div>
+
+        <!-- Page Témoignage -->
+        <div id="temoignage" class="page">
+            <h1>Témoignages de nos étudiants</h1>
+            <p>Découvrez ce que nos étudiants et anciens élèves disent de leur expérience à l'ISC/Gombe.</p>
+            
+            <div class="testimonials">
+                <div class="testimonial">
+                    <p>MonÉcole m'a offert bien plus qu'une formation. J'y ai acquis des compétences pratiques qui m'ont permis de trouver un emploi immédiatement après l'obtention de mon diplôme. Les enseignants sont disponibles et à l'écoute.</p>
+                    <div class="testimonial-author">- Thomas L., Diplômé en Informatique, 2021</div>
+                </div>
+                <div class="testimonial">
+                    <p>Grâce à la bourse sociale que j'ai obtenue, j'ai pu poursuivre mes études sans me soucier des frais academiques L'ambiance à MonÉcole est vraiment propice à l'apprentissage et à l'épanouissement personnel.</p>
+                    <div class="testimonial-author">- Aminata K., Étudiante en Gestion, 3ème année</div>
+                </div>
+                <div class="testimonial">
+                    <p>Les stages proposés dans le cadre de la formation m'ont permis de me constituer un réseau professionnel avant même d'obtenir mon diplôme. Aujourd'hui, je travaille dans l'entreprise où j'ai effectué mon stage de fin d'études.</p>
+                    <div class="testimonial-author">- Sophie M., Diplômée en Santé, 2022</div>
+                </div>
+                <div class="testimonial">
+                    <p>Ce qui m'a le plus plu, c'est l'approche pratique des enseignements. Nous travaillons sur des cas concrets et des projets réels qui nous préparent parfaitement au monde professionnel.</p>
+                    <div class="testimonial-author">- David P., Étudiant en Ingénierie, 2ème année</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; text-align: center;">
+                <h2>Partagez votre expérience</h2>
+                <p>Vous êtes un ancien ou actuel étudiant de l'isc/Gombe ? Partagez votre témoignage pour inspirer les futurs étudiants.</p>
+                <a href="#" class="btn nav-link" data-page="contact">Envoyer mon témoignage</a>
+            </div>
+        </div>
+
+        <!-- Page Contact -->
+        <div id="contact" class="page">
+            <h1>Contactez-nous</h1>
+            <p>Nous sommes à votre disposition pour toute question ou information complémentaire.</p>
+            
+            <div class="services-grid" style="margin-top: 2rem;">
+                <div class="service-card">
+                    <h3>Coordonnées</h3>
+                    <p><strong>Adresse:</strong> EX 24 Novembre Kinshasa/Gombe</p>
+                    <p><strong>Téléphone:</strong> +243 821 521 072</p>
+                    <p><strong>Email:</strong> contact@isckinshasa.cd</p>
+                    <p><strong>Horaires:</strong> Lundi-vendredi, 9h-17h</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Services</h3>
+                    <p><strong>Admissions:</strong> admissions@isckinshasa.cd</p>
+                    <p><strong>Bourses:</strong> bourses@isckinshasa.cd</p>
+                    <p><strong>Relations entreprises:</strong> entreprises@isckinshasa.cd</p>
+                    <p><strong>Anciens élèves:</strong> alumni@isckinshasa.cd</p>
+                </div>
+            </div>
+            
+            <h2 style="margin-top: 2rem;">Envoyez-nous un message</h2>
+            <form id="form-contact" style="max-width: 800px; margin: 1.5rem auto 0;">
+                <div class="form-group">
+                    <label for="contact-nom">Nom complet</label>
+                    <input type="text" id="contact-nom" name="contact-nom" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact-email">Email</label>
+                    <input type="email" id="contact-email" name="contact-email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact-sujet">Sujet</label>
+                    <select id="contact-sujet" name="contact-sujet" required>
+                        <option value="">-- Sélectionnez --</option>
+                        <option value="admission">Admission</option>
+                        <option value="bourse">Bourse</option>
+                        <option value="formation">Formation</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact-message">Message</label>
+                    <textarea id="contact-message" name="contact-message" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Envoyer le message</button>
+            </form>
+            
+            <div style="margin-top: 3rem;">
+                <h2>Plan d'accès</h2>
+                <div style="height: 300px; background-color: #eee; display: flex; align-items: center; justify-content: center; border-radius: 5px; margin-top: 1rem;">
+                    <img src="image/logo.jpg" alt="logo" >
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Mon Université</h3>
+                    <p>Une institution dédiée à l'excellence éducative et à la formation professionnelle de qualité.</p>
+                    <div class="social-links" style="margin-top: 1rem;">
+                        <a href="#">FB</a>
+                        <a href="#">TW</a>
+                        <a href="#">IG</a>
+                        <a href="#">LI</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="accueil">Accueil</a></li>
+                        <li><a href="#" class="nav-link" data-page="apropos">À propos</a></li>
+                        <li><a href="#" class="nav-link" data-page="formations">Formations</a></li>
+                        <li><a href="#" class="nav-link" data-page="inscription">Inscription</a></li>
+                        <li><a href="#" class="nav-link" data-page="faq">FAQ</a></li>
+
+                    
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>EX 24 Novembre Kinshasa/Gombe</li>
+                        <li>Kinshasa, RDC</li>
+                        <li>Tél: +243 821 521 076</li>
+                        <li>Email: contact@isckinshasa.cd</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Abonnez-vous pour recevoir nos actualités et offres spéciales.</p>
+                    <form style="margin-top: 1rem;">
+                        <input type="email" placeholder="Votre email" style="padding: 0.6rem; width: 100%; margin-bottom: 0.5rem;">
+                        <button type="submit" class="btn" style="width: 100%; padding: 0.6rem;">S'abonner</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 l'ISC Gombe. Tous droits réservés. | <a href="#" style="color: #3498db;">Mentions légales</a> | <a href="#" style="color: #3498db;">Politique de confidentialité</a></p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
-        // Toggle Mobile Menu
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Close mobile menu when clicking navigation links
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+        // Navigation entre les pages
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestion du menu mobile
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mainNav = document.getElementById('main-nav');
+            
+            menuToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
             });
-        });
-
-        // Animated Counter
-        function animateCounter(elementId, targetValue) {
-            const element = document.getElementById(elementId);
-            const duration = 2000; // 2 seconds
-            const frameDuration = 1000/60; // 60fps
-            const totalFrames = Math.round(duration / frameDuration);
-            let frame = 0;
             
-            const startValue = 0;
-            const valueIncrement = (targetValue - startValue) / totalFrames;
+            // Navigation entre les pages
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
             
-            const counter = setInterval(() => {
-                frame++;
-                const progress = frame / totalFrames;
-                const currentValue = Math.round(startValue + valueIncrement * frame);
-                
-                element.textContent = new Intl.NumberFormat().format(currentValue) + '+';
-                
-                if (frame === totalFrames) {
-                    clearInterval(counter);
-                }
-            }, frameDuration);
-        }
-        
-        // Star Rating System
-        const ratingContainer = document.getElementById('rating-container');
-        let selectedRating = 0;
-        
-        ratingContainer.addEventListener('click', (e) => {
-            const ratingLabel = e.target.closest('.rating-label');
-            if (ratingLabel) {
-                const rating = parseInt(ratingLabel.dataset.rating);
-                selectedRating = rating;
-                
-                // Update star appearance
-                document.querySelectorAll('.rating-label').forEach(label => {
-                    const labelRating = parseInt(label.dataset.rating);
-                    const star = label.querySelector('.rating-star');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
                     
-                    if (labelRating <= rating) {
-                        star.classList.remove('text-gray-300', 'dark:text-gray-600');
-                        star.classList.add('text-yellow-400');
+                    // Masquer toutes les pages
+                    pages.forEach(page => {
+                        page.classList.remove('active');
+                    });
+                    
+                    // Afficher la page cible
+                    const targetPage = this.getAttribute('data-page');
+                    document.getElementById(targetPage).classList.add('active');
+                    
+                    // Fermer le menu mobile si ouvert
+                    mainNav.classList.remove('active');
+                    
+                    // Scroll vers le haut
+                    window.scrollTo(0, 0);
+                });
+            });
+            
+            // Gestion de la FAQ
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('span');
+                    
+                    answer.classList.toggle('active');
+                    
+                    if (answer.classList.contains('active')) {
+                        icon.textContent = '-';
                     } else {
-                        star.classList.add('text-gray-300', 'dark:text-gray-600');
-                        star.classList.remove('text-yellow-400');
+                        icon.textContent = '+';
                     }
                 });
-                
-                // Select the radio input
-                ratingLabel.querySelector('input[type="radio"]').checked = true;
-            }
+            });
+            
+            // Gestion des formulaires (simulée)
+            const forms = document.querySelectorAll('form');
+            
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Merci pour votre demande pour vos inscrire. Nous traiterons votre demande rapidement.');
+                    this.reset();
+                });
+            });
         });
-        
-        // Sample reviews data
-        const reviews = [
-            {
-                name: "Marie Dupont",
-                rating: 5,
-                comment: "Application géniale ! Simple à utiliser et très rapide. Exactement ce que je cherchais depuis longtemps."
-            },
-            {
-                name: "Jean-Pierre Martin",
-                rating: 4,
-                comment: "Très bon outil, pratique et efficace. Le seul bémol est qu'il manque parfois certains formats de haute qualité."
-            },
-            {
-                name: "Sophie Leclerc",
-                rating: 5,
-                comment: "Je l'utilise tous les jours pour télécharger des tutoriels. Merci pour cette application gratuite et sans pub !"
-            },
-            {
-                name: "Thomas Petit",
-                rating: 5,
-                comment: "Enfin une application qui fonctionne sans problème ! J'ai essayé beaucoup d'autres solutions avant, mais celle-ci est de loin la meilleure."
-            },
-            {
-                name: "Camille Dubois",
-                rating: 4,
-                comment: "Très bonne application, interface intuitive. J'apprécie particulièrement la fonction d'extraction audio en MP3."
-            },
-            {
-                name: "Laurent Moreau",
-                rating: 5,
-                comment: "Merci pour ce logiciel extraordinaire ! Il m'a sauvé la vie pour mes projets vidéo."
-            }
-        ];
-        
-        // Function to render reviews
-        function renderReviews() {
-            const reviewsContainer = document.getElementById('reviews-container');
-            reviewsContainer.innerHTML = '';
-            
-            reviews.forEach(review => {
-                const reviewElement = document.createElement('div');
-                reviewElement.className = 'testimonial-card bg-gray-50 dark:bg-gray-800 p-6 rounded-xl shadow-sm transition-all duration-300';
-                
-                // Create stars based on rating
-                let starsHTML = '';
-                for (let i = 1; i <= 5; i++) {
-                    if (i <= review.rating) {
-                        starsHTML += '<i class="fas fa-star text-yellow-400"></i>';
-                    } else {
-                        starsHTML += '<i class="far fa-star text-yellow-400"></i>';
-                    }
-                }
-                
-                reviewElement.innerHTML = `
-                    <div class="flex items-center mb-4">
-                        <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg">
-                            ${review.name.charAt(0)}
-                        </div>
-                        <div class="ml-3">
-                            <h4 class="font-medium text-gray-900 dark:text-white">${review.name}</h4>
-                            <div class="flex text-sm">${starsHTML}</div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300">${review.comment}</p>
-                `;
-                
-                reviewsContainer.appendChild(reviewElement);
-            });
-        }
-        
-        // Handle review form submission
-        const reviewForm = document.getElementById('review-form');
-        const formMessage = document.getElementById('form-message');
-        
-        reviewForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const nameInput = document.getElementById('name');
-            const commentInput = document.getElementById('comment');
-            
-            if (selectedRating === 0) {
-                formMessage.textContent = "Veuillez sélectionner une note";
-                formMessage.className = "mt-3 text-center text-red-500 dark:text-red-400";
-                formMessage.classList.remove('hidden');
-                return;
-            }
-            
-            if (!nameInput.value.trim() || !commentInput.value.trim()) {
-                formMessage.textContent = "Veuillez remplir tous les champs";
-                formMessage.className = "mt-3 text-center text-red-500 dark:text-red-400";
-                formMessage.classList.remove('hidden');
-                return;
-            }
-            
-            // Simulate adding a new review
-            reviews.unshift({
-                name: nameInput.value,
-                rating: selectedRating,
-                comment: commentInput.value
-            });
-            
-            // Display success message
-            formMessage.textContent = "Merci pour votre avis !";
-            formMessage.className = "mt-3 text-center text-green-500 dark:text-green-400";
-            formMessage.classList.remove('hidden');
-            
-            // Clear form
-            nameInput.value = '';
-            commentInput.value = '';
-            selectedRating = 0;
-            
-            // Reset stars
-            document.querySelectorAll('.rating-label').forEach(label => {
-                const star = label.querySelector('.rating-star');
-                star.classList.add('text-gray-300', 'dark:text-gray-600');
-                star.classList.remove('text-yellow-400');
-            });
-            
-            // Uncheck all radio buttons
-            document.querySelectorAll('input[name="rating"]').forEach(input => {
-                input.checked = false;
-            });
-            
-            // Re-render reviews
-            renderReviews();
-            
-            // Hide message after 3 seconds
-            setTimeout(() => {
-                formMessage.classList.add('hidden');
-            }, 3000);
-        });
-        
-        // Intersection Observer for animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('count-animation');
-                    observer.unobserve(entry.target);
-                    
-                    // If it's the download counter, animate it
-                    if (entry.target.id === 'download-counter') {
-                        animateCounter('download-counter', 8500);
-                    }
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        // Observe elements for animations
-        document.querySelectorAll('.feature-card, .testimonial-card, #download-counter').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // On page load
-        window.addEventListener('DOMContentLoaded', () => {
-            renderReviews();
-            
-            // Simulate download counting if in viewport
-            const downloadCounter = document.getElementById('download-counter');
-            if (isInViewport(downloadCounter)) {
-                animateCounter('download-counter', 8500);
-            }
-        });
-        
-        // Helper function to check if element is in viewport
-        function isInViewport(element) {
-            const rect = element.getBoundingClientRect();
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
-        }
     </script>
 </body>
 </html>
